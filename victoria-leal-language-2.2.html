@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QC Report — Victoria Leal — Language 2.2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f1117;
+    color: #e8eaf0;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .page {
+    max-width: 1020px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .header {
+    background: linear-gradient(135deg, #1e2235 0%, #16213e 60%, #1a1a2e 100%);
+    border: 1px solid #2a2d45;
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .header-left h1 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.3px;
+    margin-bottom: 3px;
+  }
+  .header-left .sub {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 11.5px;
+    color: #4b5563;
+    line-height: 2;
+  }
+
+  /* ── Verdict strip ───────────────────────────────────── */
+  .verdict-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background: #13151f;
+    border: 1px solid #2a2d45;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .verdict-block {
+    padding: 18px 28px;
+    background: linear-gradient(135deg, #1e1a00, #2a2200);
+    border-right: 3px solid #f59e0b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-width: 120px;
+  }
+  .verdict-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #92400e;
+  }
+  .verdict-value {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fbbf24;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .verdict-score {
+    font-size: 11px;
+    color: #78716c;
+    margin-top: 3px;
+  }
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .metric {
+    padding: 16px 20px;
+    border-right: 1px solid #1e2235;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .metric:last-child { border-right: none; }
+  .metric-val {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .metric-lbl {
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #4b5563;
+  }
+  .c-amber  { color: #f59e0b; }
+  .c-red    { color: #f87171; }
+  .c-green  { color: #34d399; }
+  .c-blue   { color: #60a5fa; }
+  .c-purple { color: #a78bfa; }
+
+  /* ── Exec summary ────────────────────────────────────── */
+  .exec {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .exec-item {
+    background: #13151f;
+    border: 1px solid #2a2d45;
+    border-radius: 10px;
+    padding: 13px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-top-width: 3px;
+  }
+  .exec-item.ei-ok   { border-top-color: #059669; }
+  .exec-item.ei-err  { border-top-color: #dc2626; }
+  .exec-item.ei-void { border-top-color: #3b82f6; }
+  .exec-stat {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.3px;
+  }
+  .exec-item.ei-ok   .exec-stat { color: #34d399; }
+  .exec-item.ei-err  .exec-stat { color: #f87171; }
+  .exec-item.ei-void .exec-stat { color: #60a5fa; }
+  .exec-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    margin-bottom: 2px;
+  }
+  .exec-item.ei-ok   .exec-label { color: #065f46; }
+  .exec-item.ei-err  .exec-label { color: #7f1d1d; }
+  .exec-item.ei-void .exec-label { color: #1e3a5f; }
+  .exec-body {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.55;
+  }
+  .exec-body b { color: #9ca3af; font-weight: 600; }
+
+  /* ── Two-column layout ───────────────────────────────── */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 14px;
+    align-items: start;
+  }
+
+  /* ── Card ────────────────────────────────────────────── */
+  .card {
+    background: #13151f;
+    border: 1px solid #2a2d45;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .card-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #374151;
+    padding: 10px 16px;
+    background: #0f1117;
+    border-bottom: 1px solid #1e2235;
+  }
+
+  /* ── Alignment table ─────────────────────────────────── */
+  table { width: 100%; border-collapse: collapse; }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #1a1d2e;
+    vertical-align: top;
+    font-size: 12.5px;
+    color: #9ca3af;
+  }
+  td:first-child { color: #6b7280; font-weight: 600; font-size: 11px; white-space: nowrap; width: 44px; }
+  td:nth-child(2) { color: #d1d5db; width: 30%; }
+  td:nth-child(3) { color: #d1d5db; }
+  td:last-child { white-space: nowrap; text-align: right; }
+  tr:last-child td { border-bottom: none; }
+  tr { transition: background .1s; }
+  tr:hover td { background: #161929; }
+
+  /* Status accent via left border on row */
+  .row-ok    td:first-child { border-left: 3px solid #059669; padding-left: 11px; }
+  .row-err   td:first-child { border-left: 3px solid #dc2626; padding-left: 11px; }
+  .row-void  td:first-child { border-left: 3px solid #3b82f6; padding-left: 11px; }
+  .row-warn  td:first-child { border-left: 3px solid #f59e0b; padding-left: 11px; }
+  .row-skip  td:first-child { border-left: 3px solid #d97706; padding-left: 11px; }
+
+  /* ── Status badges ───────────────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+  .badge::before { content: "●"; font-size: 7px; }
+  .badge-ok   { background: #052e16; color: #34d399; }
+  .badge-err  { background: #2d0a0a; color: #f87171; }
+  .badge-void { background: #0c1e3d; color: #60a5fa; }
+  .badge-warn { background: #1f1500; color: #fbbf24; }
+  .badge-skip { background: #1a1200; color: #d97706; }
+
+  /* ── Findings panel ──────────────────────────────────── */
+  .findings { padding: 4px 0; }
+  .finding {
+    display: grid;
+    grid-template-columns: 68px 1fr;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #1a1d2e;
+  }
+  .finding:last-child { border-bottom: none; }
+  .finding-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding-top: 2px;
+  }
+  .finding-text {
+    font-size: 12.5px;
+    color: #9ca3af;
+    line-height: 1.55;
+  }
+  .finding-text b { color: #e5e7eb; font-weight: 600; }
+  .fl-err  { color: #f87171; }
+  .fl-warn { color: #fbbf24; }
+  .fl-info { color: #60a5fa; }
+  .fl-ok   { color: #34d399; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Victoria Leal — Language 2.2</h1>
+      <div class="sub">Alpha School Brownsville &nbsp;·&nbsp; Age Grade 1 &nbsp;·&nbsp; Working Grade 2 &nbsp;·&nbsp; Hole-Filling QC</div>
+    </div>
+    <div class="header-right">
+      Test &nbsp;2026-03-24<br>
+      QC &nbsp;&nbsp;&nbsp;2026-04-01
+    </div>
+  </div>
+
+  <!-- Verdict + Metrics -->
+  <div class="verdict-row">
+    <div class="verdict-block">
+      <div class="verdict-label">Verdict</div>
+      <div class="verdict-value">PARTIAL</div>
+      <div class="verdict-score">Test 11/20 (55%) · Coverage 71%</div>
+    </div>
+    <div class="metrics-row">
+      <div class="metric">
+        <div class="metric-val c-amber">71%</div>
+        <div class="metric-lbl">Coverage</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val c-amber">71.4%</div>
+        <div class="metric-lbl">Precision</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val c-red">2</div>
+        <div class="metric-lbl">Builder Errors</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="exec">
+    <div class="exec-item ei-ok">
+      <div class="exec-label">Coverage</div>
+      <div class="exec-stat">5 / 7</div>
+      <div class="exec-body">Q7, Q8, Q10, Q14 aligned. Irregular Past Tense (G2) assigned for Q5/Q6. <b>2 of 7 slots wasted</b> on unjustified G1 prerequisites.</div>
+    </div>
+    <div class="exec-item ei-err">
+      <div class="exec-label">Builder Errors</div>
+      <div class="exec-stat">2</div>
+      <div class="exec-body"><b>Q1</b> — Irregular Plurals (Ex. 1233, f→ves confirmed) available and omitted.<br><b>Q13</b> — Commas in Dates &amp; Lists (G1 #453) omitted; Commas in Letters covers Q14 only.</div>
+    </div>
+    <div class="exec-item ei-void">
+      <div class="exec-label">Catalog Void</div>
+      <div class="exec-stat">1</div>
+      <div class="exec-body"><b>Q17</b> — No G2 Context Clues lesson exists. Shades of Meaning (G2 #1505) is the closest available substitute.</div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="cols">
+
+    <!-- Alignment table -->
+    <div class="card">
+      <div class="card-title">Skill Alignment · 8 questions mapped</div>
+      <table>
+        <thead>
+          <tr style="background:#0d0f1a;">
+            <td style="color:#374151;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:7px 14px;">Q</td>
+            <td style="color:#374151;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:7px 14px;">Failed Skill</td>
+            <td style="color:#374151;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:7px 14px;">Assigned Lesson</td>
+            <td style="color:#374151;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:7px 14px;">Status</td>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="row-err">
+          <td>Q1</td>
+          <td><b>Irregular Plurals</b><br><span style="color:#4b5563;font-size:11.5px">shelf→shelves (f→ves rule)</span></td>
+          <td><span style="color:#6b7280;font-size:11.5px;font-style:italic;">None assigned</span><br><span style="color:#4b5563;font-size:11px;">Ex. 1233 available &amp; applicable — omitted</span></td>
+          <td><span class="badge badge-err">BUILDER ERROR</span></td>
+        </tr>
+        <tr class="row-warn">
+          <td>Q5–6</td>
+          <td><b>Irregular Past Tense</b><br><span style="color:#4b5563;font-size:11.5px">swim→swam, fly→flew</span></td>
+          <td><span style="color:#d1d5db;font-size:11.5px;">3-lesson verb sequence</span><br><span style="color:#4b5563;font-size:11px;">G2 Irreg PT correct · G1 Verbs PT + G1 Mixed <b style="color:#f87171">wasted</b> — G1 misses were not verb-related</span></td>
+          <td><span class="badge badge-warn">QUESTIONABLE</span></td>
+        </tr>
+        <tr class="row-ok">
+          <td>Q7</td>
+          <td><b>Adjectives</b></td>
+          <td><span style="color:#d1d5db;font-size:11.5px;">Adjectives Review (G2)</span></td>
+          <td><span class="badge badge-ok">ALIGNED</span></td>
+        </tr>
+        <tr class="row-ok">
+          <td>Q8</td>
+          <td><b>Adverbs</b></td>
+          <td><span style="color:#d1d5db;font-size:11.5px;">Adverbs (G2)</span></td>
+          <td><span class="badge badge-ok">ALIGNED</span></td>
+        </tr>
+        <tr class="row-ok">
+          <td>Q10</td>
+          <td><b>Sentences: Combining</b></td>
+          <td><span style="color:#d1d5db;font-size:11.5px;">Sentences: Expand &amp; Rearrange (G2)</span></td>
+          <td><span class="badge badge-ok">ALIGNED</span></td>
+        </tr>
+        <tr class="row-err">
+          <td>Q13</td>
+          <td><b>Commas — date pattern</b></td>
+          <td><span style="color:#6b7280;font-size:11.5px;font-style:italic;">None assigned</span><br><span style="color:#4b5563;font-size:11px;">Commas in Dates &amp; Lists (G1 #453) omitted</span></td>
+          <td><span class="badge badge-err">BUILDER ERROR</span></td>
+        </tr>
+        <tr class="row-ok">
+          <td>Q14</td>
+          <td><b>Commas — letter pattern</b></td>
+          <td><span style="color:#d1d5db;font-size:11.5px;">Commas in Letters (G2)</span></td>
+          <td><span class="badge badge-ok">ALIGNED</span></td>
+        </tr>
+        <tr class="row-void">
+          <td>Q17</td>
+          <td><b>Vocabulary: Context Clues</b></td>
+          <td><span style="color:#6b7280;font-size:11.5px;font-style:italic;">None — catalog void</span><br><span style="color:#4b5563;font-size:11px;">Shades of Meaning (G2) is closest substitute</span></td>
+          <td><span class="badge badge-void">VOID</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Findings panel -->
+    <div class="card">
+      <div class="card-title">QC Findings</div>
+      <div class="findings">
+        <div class="finding">
+          <div class="finding-label fl-err">Errors ×2</div>
+          <div class="finding-text">
+            <b>Q1</b> — Irregular Plurals lesson (id 1233) confirmed to teach f→ves pattern via wife→wives, knife→knives. Available and omitted.<br><br>
+            <b>Q13</b> — Commas in Dates &amp; Lists (G1 id 453) directly covers date commas and was not assigned. Commas in Letters covers letter formatting only. Spaced repetition warranted given student age.
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-label fl-info">Void ×1</div>
+          <div class="finding-text">
+            <b>Q17</b> — No G2 context clues lesson in catalog. Shades of Meaning (G2 id 1505) is best available substitute — partial vocabulary overlap, not a direct match.
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-label fl-warn">Wasted Slots</div>
+          <div class="finding-text">
+            G1 Language 1.12 (2026-03-03, 18/20): both misses were unrelated to verbs. The 2 G1 prereq slots were unjustified and should have covered Q1 (Irregular Plurals) and Q13 (Commas in Dates).
+          </div>
+        </div>
+        <div class="finding">
+          <div class="finding-label fl-ok">Outlook</div>
+          <div class="finding-text">
+            <b>Should improve:</b> Q5/6, Q7, Q8, Q10, Q14<br>
+            <b>Expect persistence:</b> Q1, Q13 (builder errors), Q17 (void)
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
