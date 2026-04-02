@@ -18,7 +18,12 @@
   .page { max-width: 720px; margin: 0 auto; }
   h1 { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 4px; }
   .sub { font-size: 12px; color: #4b5563; margin-bottom: 32px; }
-  .report-list { display: flex; flex-direction: column; gap: 10px; }
+  .student-group { margin-bottom: 24px; }
+  .student-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .7px; color: #374151; margin-bottom: 8px; padding-left: 2px;
+  }
+  .report-list { display: flex; flex-direction: column; gap: 8px; }
   .report-card {
     background: #13151f;
     border: 1px solid #2a2d45;
@@ -32,11 +37,13 @@
     transition: border-color .15s;
   }
   .report-card:hover { border-color: #3b4268; }
+  .report-card.k4 { border-left: 3px solid #f59e0b; }
+  .report-card.k5 { border-left: 3px solid #dc2626; }
   .rc-name { font-size: 14px; font-weight: 700; color: #e5e7eb; }
   .rc-meta { font-size: 11.5px; color: #4b5563; margin-top: 2px; }
   .rc-verdict {
     font-size: 11px; font-weight: 700; letter-spacing: .5px;
-    padding: 4px 10px; border-radius: 5px;
+    padding: 4px 10px; border-radius: 5px; white-space: nowrap;
   }
   .v-partial { background: #1f1500; color: #fbbf24; }
   .v-fail    { background: #2d0a0a; color: #f87171; }
@@ -46,22 +53,40 @@
 <div class="page">
   <h1>Hole-Filling QC Reports</h1>
   <div class="sub">Alpha School · Automated hole-filling plan quality control</div>
-  <div class="report-list">
-    <a class="report-card" href="oliver-mcleod-ela-k.html">
-      <div>
-        <div class="rc-name">Oliver McLeod</div>
-        <div class="rc-meta">ELA K.4 &amp; K.5 &nbsp;·&nbsp; Alpha Anywhere Center &nbsp;·&nbsp; Tests 2026-03-26 / 2026-03-31 &nbsp;·&nbsp; QC 2026-04-01</div>
-      </div>
-      <span class="rc-verdict v-fail">FAIL</span>
-    </a>
-    <a class="report-card" href="victoria-leal-language-2.2.html">
-      <div>
-        <div class="rc-name">Victoria Leal</div>
-        <div class="rc-meta">Language 2.2 &nbsp;·&nbsp; Alpha School Brownsville &nbsp;·&nbsp; Test 2026-03-24 &nbsp;·&nbsp; QC 2026-04-01</div>
-      </div>
-      <span class="rc-verdict v-partial">PARTIAL</span>
-    </a>
+
+  <div class="student-group">
+    <div class="student-label">Oliver McLeod — ELA K · Alpha Anywhere Center</div>
+    <div class="report-list">
+      <a class="report-card k4" href="oliver-mcleod-ela-k4.html">
+        <div>
+          <div class="rc-name">ELA K.4 Hole-Filling Plan</div>
+          <div class="rc-meta">Test 2026-03-26 &nbsp;·&nbsp; 3 wrong (Q4, Q5, Q10) &nbsp;·&nbsp; 3 lessons assigned &nbsp;·&nbsp; QC 2026-04-02</div>
+        </div>
+        <span class="rc-verdict v-partial">PARTIAL</span>
+      </a>
+      <a class="report-card k5" href="oliver-mcleod-ela-k5.html">
+        <div>
+          <div class="rc-name">ELA K.5 Hole-Filling Plan</div>
+          <div class="rc-meta">Test 2026-03-31 &nbsp;·&nbsp; 7 wrong (Q2,4,5,7,8,9,10) &nbsp;·&nbsp; 3 lessons assigned &nbsp;·&nbsp; QC 2026-04-02</div>
+        </div>
+        <span class="rc-verdict v-fail">FAIL</span>
+      </a>
+    </div>
   </div>
+
+  <div class="student-group">
+    <div class="student-label">Victoria Leal — Language 2.2 · Alpha School Brownsville</div>
+    <div class="report-list">
+      <a class="report-card" href="victoria-leal-language-2.2.html">
+        <div>
+          <div class="rc-name">Language 2.2 Hole-Filling Plan</div>
+          <div class="rc-meta">Test 2026-03-24 &nbsp;·&nbsp; QC 2026-04-01</div>
+        </div>
+        <span class="rc-verdict v-partial">PARTIAL</span>
+      </a>
+    </div>
+  </div>
+
 </div>
 </body>
 </html>

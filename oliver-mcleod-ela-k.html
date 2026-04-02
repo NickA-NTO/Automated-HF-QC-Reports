@@ -315,10 +315,11 @@
     letter-spacing: .3px;
   }
   .badge::before { content: "●"; font-size: 7px; }
-  .badge-ok   { background: #052e16; color: #34d399; }
-  .badge-err  { background: #2d0a0a; color: #f87171; }
-  .badge-void { background: #0c1e3d; color: #60a5fa; }
-  .badge-warn { background: #1f1500; color: #fbbf24; }
+  .badge-ok      { background: #052e16; color: #34d399; }
+  .badge-err     { background: #2d0a0a; color: #f87171; }
+  .badge-void    { background: #0c1e3d; color: #60a5fa; }
+  .badge-warn    { background: #1f1500; color: #fbbf24; }
+  .badge-bld-err { background: #2d0a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
 
   /* ── Macro concern banner ────────────────────────────── */
   .macro-banner {
@@ -454,12 +455,12 @@
   <div class="header">
     <div class="header-left">
       <h1>Oliver McLeod — ELA K</h1>
-      <div class="sub">Alpha Anywhere Center &nbsp;·&nbsp; Age Grade K &nbsp;·&nbsp; Hole-Filling QC &nbsp;·&nbsp; Plans K.4 &amp; K.5 &nbsp;·&nbsp; Skills verified via builder agent QC reports</div>
+      <div class="sub">Alpha Anywhere Center &nbsp;·&nbsp; Age Grade K &nbsp;·&nbsp; Hole-Filling QC &nbsp;·&nbsp; Plans K.4 &amp; K.5 &nbsp;·&nbsp; Independent QC — builder agent claims scrutinized, not accepted as source of truth</div>
     </div>
     <div class="header-right">
       Test (K.4) &nbsp;2026-03-26<br>
       Test (K.5) &nbsp;2026-03-31<br>
-      QC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2026-04-01
+      QC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2026-04-02
     </div>
   </div>
 
@@ -532,11 +533,11 @@
               <td>Cap of I + Punct (.)</td>
               <td><span class="badge badge-ok">Aligned</span></td>
             </tr>
-            <tr class="row-void">
+            <tr class="row-err">
               <td>Q10</td>
               <td><span class="standard-code">RI.K.2</span>Main Idea — Info Text</td>
-              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
-              <td><span class="badge badge-void">Catalog Void</span></td>
+              <td><span class="uncovered-cell">Unaddressed — builder error</span></td>
+              <td><span class="badge badge-bld-err">Builder Error</span></td>
             </tr>
           </tbody>
         </table>
@@ -546,9 +547,11 @@
       <div class="plan-section">
         <div class="section-label">Flags</div>
         <div class="flags-row">
-          <span class="flag-chip flag-info">Catalog Void — RI.K.2</span>
+          <span class="flag-chip flag-err">Missing Skills — Q10 RI.K.2 (untried stories existed)</span>
+          <span class="flag-chip flag-warn">2 Slots on Q5 — suboptimal when Q10 unaddressed</span>
           <span class="flag-chip flag-warn">Zero Retention Window</span>
-          <span class="flag-chip flag-ok">QTI Verified</span>
+          <span class="flag-chip flag-warn">QTI from Agent Report — unverified</span>
+          <span class="flag-chip flag-info">Q10 Persistent K.1–K.5</span>
         </div>
       </div>
     </div>
@@ -574,7 +577,7 @@
           <div class="metric-item">
             <div class="metric-label">Coverage</div>
             <div class="metric-value mv-red">43%</div>
-            <div class="metric-sub">3 of 7 — max possible</div>
+            <div class="metric-sub">3 of 7 — builder errors on 4 more</div>
           </div>
           <div class="metric-item">
             <div class="metric-label">Precision</div>
@@ -625,29 +628,29 @@
               <td>Prepositions K</td>
               <td><span class="badge badge-ok">Aligned</span></td>
             </tr>
-            <tr class="row-void">
+            <tr class="row-err">
               <td>Q7</td>
               <td><span class="standard-code">RL.K.1</span>Narrative Key Detail</td>
-              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
-              <td><span class="badge badge-void">Catalog Void</span></td>
+              <td><span class="uncovered-cell">L550 untried — builder error</span></td>
+              <td><span class="badge badge-bld-err">Builder Error</span></td>
             </tr>
-            <tr class="row-void">
+            <tr class="row-err">
               <td>Q8</td>
               <td><span class="standard-code">RL.K.1</span>Narrative Emotional Arc</td>
-              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
-              <td><span class="badge badge-void">Catalog Void</span></td>
+              <td><span class="uncovered-cell">L550 untried — builder error</span></td>
+              <td><span class="badge badge-bld-err">Builder Error</span></td>
             </tr>
-            <tr class="row-void">
+            <tr class="row-err">
               <td>Q9</td>
               <td><span class="standard-code">RI.K.1</span>Informational Key Detail</td>
-              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
-              <td><span class="badge badge-void">Catalog Void</span></td>
+              <td><span class="uncovered-cell">L547/L548 untried — builder error</span></td>
+              <td><span class="badge badge-bld-err">Builder Error</span></td>
             </tr>
-            <tr class="row-void">
+            <tr class="row-err">
               <td>Q10</td>
               <td><span class="standard-code">RI.K.2</span>Main Idea — Info Text</td>
-              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
-              <td><span class="badge badge-void">Catalog Void</span></td>
+              <td><span class="uncovered-cell">L547/L548 untried — builder error</span></td>
+              <td><span class="badge badge-bld-err">Builder Error</span></td>
             </tr>
           </tbody>
         </table>
@@ -657,39 +660,41 @@
       <div class="plan-section">
         <div class="section-label">Flags</div>
         <div class="flags-row">
-          <span class="flag-chip flag-info">Catalog Void Majority (4/7)</span>
-          <span class="flag-chip flag-warn">Q10 RI.K.2 Persistent</span>
-          <span class="flag-chip flag-warn">Q4 Proximity Match</span>
-          <span class="flag-chip flag-ok">QTI Verified</span>
+          <span class="flag-chip flag-err">Builder Error — Q7/Q8 RL.K.1 (L550 untried)</span>
+          <span class="flag-chip flag-err">Builder Error — Q9/Q10 RI.K.1/RI.K.2 (L547/L548 untried)</span>
+          <span class="flag-chip flag-err">Genre Mismatch — L1628 (narrative) cited for RI.K.2 (informational)</span>
+          <span class="flag-chip flag-warn">Q4 Proximity — slot better used on comprehension story</span>
+          <span class="flag-chip flag-warn">QTI from Agent Report — unverified</span>
+          <span class="flag-chip flag-info">Q10 Persistent K.1–K.5</span>
         </div>
       </div>
     </div>
 
   </div>
 
-  <!-- ── Catalog void panel ── -->
-  <div class="void-card">
-    <div class="void-header">Confirmed Catalog Voids — Comprehension Strategy Instruction</div>
+  <!-- ── Builder errors panel ── -->
+  <div class="void-card" style="border-left-color:#dc2626;background:#130b0b;border-color:#5c1f1f;">
+    <div class="void-header" style="background:#160a0a;border-color:#5c1f1f;color:#7f1d1d;">Independent QC Findings — Builder Errors (Agent Claims Disputed)</div>
     <div class="void-body">
-      <div class="void-item">
-        <div class="void-skill">Narrative Key Detail Retrieval</div>
-        <div class="void-std">RL.K.1</div>
-        <div class="void-desc">K.5 Q7 + Q8. No Lalilo K lesson teaches how to isolate specific key details from narrative text. All K comprehension lessons are <b>practice-based read-alongs</b>, not explicit strategy instruction. Lessons 549 and 1628 were previously assigned — both resulted in <b>gap_persisted</b>.</div>
+      <div class="void-item" style="border-color:#3b1515;">
+        <div class="void-skill" style="color:#f87171;">K.4 Q10 — RI.K.2 Left Unaddressed</div>
+        <div class="void-std" style="background:#2d0a0a;color:#f87171;">Builder Error</div>
+        <div class="void-desc">Agent claimed "catalog void" after L549 failed. <b>Untried informational stories L547 and L548 were available.</b> Both address RI.K.2 with "What is this text mostly about?" questions. Builder used 2 slots on Q5 instead. Q10 has been wrong on every K test (K.1–K.5).</div>
       </div>
-      <div class="void-item">
-        <div class="void-skill">Informational Text Key Detail</div>
-        <div class="void-std">RI.K.1</div>
-        <div class="void-desc">K.5 Q9. No Lalilo K lesson teaches how to locate key details in informational text. Prerequisite decoding fluency gap (RF.K.4) also lacks a catalog lesson. Phonics lessons assigned for Q2/Q4 may partially address the access barrier.</div>
+      <div class="void-item" style="border-color:#3b1515;">
+        <div class="void-skill" style="color:#f87171;">K.5 Q7/Q8 — RL.K.1 Left Unaddressed</div>
+        <div class="void-std" style="background:#2d0a0a;color:#f87171;">Builder Error</div>
+        <div class="void-desc">Agent claimed catalog void citing L549 (informational) and L1628 (narrative) as "previously tried." <b>L549 is informational — it cannot address RL.K.1 (narrative standard).</b> L550 "On My Way to Kindergarten" (narrative, RL.K.1) was never assigned to Oliver. A single narrative story covers both Q7 and Q8.</div>
       </div>
-      <div class="void-item">
-        <div class="void-skill">Main Idea Identification</div>
-        <div class="void-std">RI.K.2</div>
-        <div class="void-desc">K.4 Q10 + K.5 Q10 — <b>persistent across two tests.</b> No RI.K.2 explicit instruction lesson exists. Lesson 549 previously tried and gap_persisted. Agent reviewed 9 alternatives — none adequate. Strategy instruction does not exist in the Lalilo K catalog.</div>
+      <div class="void-item" style="border-color:#3b1515;">
+        <div class="void-skill" style="color:#f87171;">K.5 Q9/Q10 — RI.K.1/RI.K.2 Left Unaddressed</div>
+        <div class="void-std" style="background:#2d0a0a;color:#f87171;">Builder Error + Genre Mismatch</div>
+        <div class="void-desc">Agent cited L1628 ("One Blue Crayon") as "also failed" for RI.K.2. <b>L1628 is a narrative story — it cannot address RI.K.2 (informational standard).</b> L547, L548, and L1648 (all informational) were untried. A single informational story covers both Q9 and Q10. Agent's "9 alternatives reviewed" claim is undermined by this genre error.</div>
       </div>
-      <div class="void-item">
-        <div class="void-skill">Builder Assessment</div>
-        <div class="void-std">No errors</div>
-        <div class="void-desc">The builder agent <b>correctly identified all catalog voids</b>, assigned lessons for every addressable gap, self-flagged the Q4 proximity match, and documented prior failed attempts (549, 1628). All 3 assigned lessons on K.5 are justified — zero builder errors confirmed.</div>
+      <div class="void-item" style="border-color:#3b1515;">
+        <div class="void-skill" style="color:#f87171;">K.5 Optimal Plan — What Could Have Been</div>
+        <div class="void-std" style="background:#1f1500;color:#fbbf24;">Missed Opportunity</div>
+        <div class="void-desc">With 3 slots and 7 wrong questions, the builder chose Q2 + Q4 (proximity) + Q5 = covering 3 individual items. Optimal allocation: <b>Simple Plurals (Q2) + Narrative story L550 (Q7+Q8) + Informational story L548 (Q9+Q10)</b> = 5 of 7 questions addressed (71% coverage → PARTIAL or near-PASS) within the same 3-slot constraint.</div>
       </div>
     </div>
   </div>
@@ -698,11 +703,10 @@
   <div class="macro-banner">
     <div class="macro-icon">⚠</div>
     <div>
-      <div class="macro-label">Macro Concern — Catalog-Constrained Repeated Failure</div>
+      <div class="macro-label">Macro Concern — Builder Errors Disguised as Catalog Voids</div>
       <div class="macro-text">
         <b>5 consecutive K ELA failures despite 100% Lalilo K base course completion.</b>
-        The K.5 analysis reveals the root cause: the ELA K tests assess RL.K.1, RI.K.1, and RI.K.2 comprehension skills for which <b>no Lalilo K direct instruction lesson exists</b>. Automated hole-filling cannot resolve these gaps. Practice stories (549, 1628) have already been tried and resulted in gap_persisted. The K.5 FAIL verdict is catalog-driven, not a builder error.
-        <b>Teacher-led explicit comprehension strategy instruction is required</b> — main idea identification, key detail retrieval, and informational text comprehension cannot be addressed through Lalilo alone.
+        The builder agent attributed the majority of K.5 failures to catalog voids. Independent QC finds this is <b>incorrect</b>: untried narrative (L550) and informational (L547, L548, L1648) stories were available for all four unaddressed comprehension questions. The agent also made a <b>genre mismatch error</b> — citing L1628 (narrative) as evidence that RI.K.2 (informational) was unaddressable. An optimal 3-slot plan could have reached 71% coverage vs. the 43% actually achieved. Yes, teacher-led explicit comprehension strategy instruction is still needed — but that does not excuse leaving available practice stories unassigned.
       </div>
     </div>
   </div>
@@ -711,10 +715,13 @@
   <div class="stories-card">
     <div class="stories-header">Comprehension Stories — Assessment</div>
     <div class="stories-body">
-      <div class="verdict-line">Not warranted — practice stories have already failed for this student</div>
-      Despite a 70% failure rate on K.5 and ELA title suggesting comprehension scope, assigning additional Lalilo comprehension stories is <b>not the appropriate intervention</b>. The builder agent confirmed that Lesson 549 ('The Story of a Seed') and Lesson 1628 ('One Blue Crayon') were previously assigned for the same RL.K.1 and RI.K.2 gap types — <b>both resulted in gap_persisted</b>. All available K comprehension stories share the same practice-only structure; none provide explicit strategy instruction. Assigning another story would repeat the failed approach without addressing the root cause.
-      <div class="prior-note">
-        Previously tried: Lesson 549 — gap_persisted · Lesson 1628 — gap_persisted · Agent reviewed 9 alternatives for RI.K.2 — none adequate. Teacher-led instruction is the correct next step, not additional Lalilo story practice.
+      <div class="verdict-line" style="color:#f87171;">Should have been assigned — untried stories existed for all four comprehension gaps</div>
+      The builder agent assigned <b>zero comprehension stories</b> across both K.4 and K.5 plans, citing catalog voids for all comprehension questions. Independent QC disputes this. <b>Genre-matched untried stories were available for every unaddressed question:</b>
+      <div class="prior-note" style="margin-top:10px;border-color:#5c1f1f;background:#160a0a;">
+        <b style="color:#fca5a5;">For RL.K.1 (Q7/Q8 — narrative):</b> L550 "On My Way to Kindergarten" — never assigned to Oliver · L1617 "Muffet" — never assigned<br>
+        <b style="color:#fca5a5;">For RI.K.1 + RI.K.2 (Q9/Q10 — informational):</b> L547 "See, Hear, Smell, Taste, Touch" — never assigned · L548 "Harvest Time" — never assigned · L1648 "What is Climate Change?" — never assigned<br>
+        <b style="color:#fca5a5;">For RI.K.2 (K.4 Q10 — informational):</b> Same L547 and L548 — never assigned despite L549 being the only prior attempt<br><br>
+        <b style="color:#9ca3af;">Previously tried (valid):</b> L549 "The Story of a Seed" (informational) — assigned pre-K.4, gap_persisted · L1628 "One Blue Crayon" (narrative) — assigned pre-K.4 for RL.K.1, gap_persisted. These two exhausting the catalog does <b>not</b> mean the catalog is void — three to five untried alternatives remained.
       </div>
     </div>
   </div>
