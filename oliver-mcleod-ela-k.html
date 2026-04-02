@@ -108,7 +108,7 @@
     white-space: nowrap;
     flex-shrink: 0;
   }
-  .verdict-chip.cond-pass {
+  .verdict-chip.partial {
     background: #1f1500;
     color: #fbbf24;
     border: 1px solid #78350f;
@@ -134,6 +134,41 @@
     color: #374151;
     margin-bottom: 5px;
   }
+
+  /* ── Metrics row ────────────────────────────────────── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .metric-item {
+    background: #0d0f1a;
+    border: 1px solid #1e2235;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .metric-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #374151;
+  }
+  .metric-value {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .metric-sub {
+    font-size: 10px;
+    color: #6b7280;
+  }
+  .mv-amber { color: #f59e0b; }
+  .mv-red   { color: #f87171; }
+  .mv-green { color: #34d399; }
 
   .score-line {
     font-size: 15px;
@@ -171,6 +206,15 @@
     flex-shrink: 0;
   }
   .lesson-list li b { color: #d1d5db; font-weight: 600; }
+  .lesson-list li .std {
+    color: #4b5563;
+    font-size: 10.5px;
+    font-family: 'Courier New', monospace;
+    background: #1a1d2e;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-style: normal;
+  }
 
   /* ── Alignment mini-table ────────────────────────────── */
   .mini-table {
@@ -206,19 +250,30 @@
     white-space: nowrap;
     width: 36px;
   }
-  .mini-table tbody td:nth-child(2) {
-    color: #d1d5db;
-  }
+  .mini-table tbody td:nth-child(2) { color: #d1d5db; }
+  .mini-table tbody td:nth-child(3) { color: #9ca3af; }
   .mini-table tbody td:last-child {
     white-space: nowrap;
     text-align: right;
   }
 
-  /* Row accent via left border */
+  .standard-code {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #4b5563;
+    background: #1a1d2e;
+    padding: 1px 5px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  /* Row accents */
+  .mini-table tbody .row-ok   td:first-child { border-left: 2px solid #059669; padding-left: 8px; }
   .mini-table tbody .row-warn td:first-child  { border-left: 2px solid #f59e0b; padding-left: 8px; }
   .mini-table tbody .row-err  td:first-child  { border-left: 2px solid #dc2626; padding-left: 8px; }
+  .mini-table tbody .row-void td:first-child  { border-left: 2px solid #3b82f6; padding-left: 8px; }
 
-  /* Lesson cell italic for uncovered */
   .uncovered-cell {
     color: #4b5563;
     font-style: italic;
@@ -246,6 +301,7 @@
   .flag-err  { background: #2d0a0a; color: #f87171; }
   .flag-warn { background: #1f1500; color: #fbbf24; }
   .flag-info { background: #0c1e3d; color: #60a5fa; }
+  .flag-ok   { background: #052e16; color: #34d399; }
 
   /* ── Status badges ───────────────────────────────────── */
   .badge {
@@ -263,8 +319,6 @@
   .badge-err  { background: #2d0a0a; color: #f87171; }
   .badge-void { background: #0c1e3d; color: #60a5fa; }
   .badge-warn { background: #1f1500; color: #fbbf24; }
-  .badge-skip { background: #1a1200; color: #d97706; }
-  .badge-amber-unverified { background: #1f1500; color: #fbbf24; }
 
   /* ── Macro concern banner ────────────────────────────── */
   .macro-banner {
@@ -298,6 +352,59 @@
   }
   .macro-text b { color: #f87171; font-weight: 700; }
 
+  /* ── Catalog void summary panel ─────────────────────── */
+  .void-card {
+    background: #0c1325;
+    border: 1px solid #1e3a5f;
+    border-left: 4px solid #3b82f6;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .void-header {
+    padding: 10px 16px;
+    background: #0d1828;
+    border-bottom: 1px solid #1e3a5f;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #1e40af;
+  }
+  .void-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .void-item {
+    padding: 11px 16px;
+    border-right: 1px solid #1e3a5f;
+    border-bottom: 1px solid #1e3a5f;
+  }
+  .void-item:nth-child(even) { border-right: none; }
+  .void-item:nth-last-child(-n+2) { border-bottom: none; }
+  .void-skill {
+    font-size: 12px;
+    font-weight: 700;
+    color: #60a5fa;
+    margin-bottom: 3px;
+  }
+  .void-std {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: #1e40af;
+    background: #172554;
+    padding: 1px 5px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+  .void-desc {
+    font-size: 11.5px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+  .void-desc b { color: #9ca3af; font-weight: 600; }
+
   /* ── Stories panel ───────────────────────────────────── */
   .stories-card {
     background: #13151f;
@@ -316,79 +423,27 @@
     color: #374151;
   }
   .stories-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    color: #6b7280;
+    line-height: 1.6;
   }
-  .story-col {
-    padding: 12px 16px;
-  }
-  .story-col:first-child {
-    border-right: 1px solid #1a1d2e;
-  }
-  .story-col-label {
-    font-size: 10.5px;
+  .stories-body b { color: #9ca3af; font-weight: 600; }
+  .stories-body .verdict-line {
+    font-size: 13px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .6px;
+    color: #34d399;
     margin-bottom: 6px;
   }
-  .story-col-label.k4-lbl { color: #78350f; }
-  .story-col-label.k5-lbl { color: #7f1d1d; }
-  .story-body-text {
-    font-size: 12px;
-    color: #6b7280;
-    line-height: 1.55;
-    margin-bottom: 7px;
-  }
-  .story-body-text b { color: #9ca3af; font-weight: 600; }
-  .story-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    margin-bottom: 8px;
-  }
-  .story-list li {
+  .stories-body .prior-note {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #0d0f1a;
+    border: 1px solid #1e2235;
+    border-radius: 6px;
     font-size: 11.5px;
-    color: #9ca3af;
-    padding: 2px 0;
-    display: flex;
-    gap: 6px;
-    align-items: baseline;
-  }
-  .story-list li::before {
-    content: "→";
-    color: #374151;
-    font-size: 11px;
-    flex-shrink: 0;
-  }
-  .story-list li b { color: #d1d5db; font-weight: 600; }
-  .story-note {
-    font-size: 11px;
-    color: #4b5563;
-    line-height: 1.5;
-    font-style: italic;
-    border-top: 1px solid #1a1d2e;
-    padding-top: 8px;
-    margin-top: 4px;
-  }
-  .stories-footer {
-    padding: 8px 16px 10px;
-    border-top: 1px solid #1a1d2e;
-    font-size: 11px;
     color: #4b5563;
     font-style: italic;
-    line-height: 1.5;
-  }
-  .stories-footer code {
-    background: #1a1d2e;
-    color: #60a5fa;
-    padding: 1px 5px;
-    border-radius: 4px;
-    font-size: 10.5px;
-    font-style: normal;
-    font-family: 'Courier New', monospace;
   }
 </style>
 </head>
@@ -399,7 +454,7 @@
   <div class="header">
     <div class="header-left">
       <h1>Oliver McLeod — ELA K</h1>
-      <div class="sub">Alpha Anywhere Center &nbsp;·&nbsp; Age Grade K &nbsp;·&nbsp; Hole-Filling QC &nbsp;·&nbsp; Plans K.4 &amp; K.5</div>
+      <div class="sub">Alpha Anywhere Center &nbsp;·&nbsp; Age Grade K &nbsp;·&nbsp; Hole-Filling QC &nbsp;·&nbsp; Plans K.4 &amp; K.5 &nbsp;·&nbsp; Skills verified via builder agent QC reports</div>
     </div>
     <div class="header-right">
       Test (K.4) &nbsp;2026-03-26<br>
@@ -416,54 +471,72 @@
       <div class="plan-header">
         <div>
           <div class="plan-title">Plan K.4 &nbsp;·&nbsp; 2026 ELA K.4</div>
-          <div class="plan-subtitle">Test date 2026-03-26 &nbsp;·&nbsp; 3 lessons assigned</div>
+          <div class="plan-subtitle">Test date 2026-03-26 &nbsp;·&nbsp; 3 lessons assigned &nbsp;·&nbsp; 100% complete</div>
         </div>
-        <div class="verdict-chip cond-pass">Conditional Pass</div>
+        <div class="verdict-chip partial">Partial</div>
       </div>
 
-      <!-- Score -->
+      <!-- Metrics -->
       <div class="plan-section">
-        <div class="section-label">Test Score</div>
-        <div class="score-line">7 / 10 &nbsp;<span class="pct">70%</span></div>
-        <div class="wrong-qs">Wrong: <span>Q4, Q5, Q10</span></div>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <div class="metric-label">Test Score</div>
+            <div class="metric-value mv-amber">70%</div>
+            <div class="metric-sub">7 / 10 &nbsp;·&nbsp; Q4, Q5, Q10 wrong</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Coverage</div>
+            <div class="metric-value mv-amber">67%</div>
+            <div class="metric-sub">2 of 3 gaps addressed</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Precision</div>
+            <div class="metric-value mv-green">100%</div>
+            <div class="metric-sub">3 of 3 lessons on-target</div>
+          </div>
+        </div>
       </div>
 
       <!-- Lessons -->
       <div class="plan-section">
         <div class="section-label">Lessons Assigned</div>
         <ul class="lesson-list">
-          <li><b>Categories K</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Vocabulary / Categorization)</span></li>
-          <li><b>Capitalization of "I"</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Capitalization)</span></li>
-          <li><b>Punctuation ( . )</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Punctuation)</span></li>
+          <li><b>Categories K</b> <span class="std">L.K.5.a</span> <span style="color:#4b5563;font-size:11px;">Vocabulary / Categorization</span></li>
+          <li><b>Capitalization of "I"</b> <span class="std">L.K.2.a</span> <span style="color:#4b5563;font-size:11px;">Grammar — Capitalization</span></li>
+          <li><b>Punctuation ( . )</b> <span class="std">L.K.2.b</span> <span style="color:#4b5563;font-size:11px;">Grammar — Punctuation</span></li>
         </ul>
       </div>
 
       <!-- Alignment table -->
       <div class="plan-section" style="padding-left:0;padding-right:0;padding-bottom:0;">
-        <div class="section-label" style="padding:0 16px 5px;">Skill Alignment · 3 questions mapped</div>
+        <div class="section-label" style="padding:0 16px 5px;">Skill Alignment</div>
         <table class="mini-table">
           <thead>
             <tr>
               <td>Q</td>
-              <td>Lesson Assigned</td>
+              <td>Confirmed Skill</td>
+              <td>Lesson</td>
               <td>Status</td>
             </tr>
           </thead>
           <tbody>
-            <tr class="row-warn">
+            <tr class="row-ok">
               <td>Q4</td>
+              <td><span class="standard-code">L.K.5.a</span>Word Categorization</td>
               <td>Categories K</td>
-              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+              <td><span class="badge badge-ok">Aligned</span></td>
             </tr>
-            <tr class="row-warn">
+            <tr class="row-ok">
               <td>Q5</td>
-              <td>Capitalization of "I"</td>
-              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+              <td><span class="standard-code">L.K.2</span>Print Conventions</td>
+              <td>Cap of I + Punct (.)</td>
+              <td><span class="badge badge-ok">Aligned</span></td>
             </tr>
-            <tr class="row-warn">
+            <tr class="row-void">
               <td>Q10</td>
-              <td>Punctuation ( . )</td>
-              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+              <td><span class="standard-code">RI.K.2</span>Main Idea — Info Text</td>
+              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
+              <td><span class="badge badge-void">Catalog Void</span></td>
             </tr>
           </tbody>
         </table>
@@ -473,9 +546,9 @@
       <div class="plan-section">
         <div class="section-label">Flags</div>
         <div class="flags-row">
-          <span class="flag-chip flag-err">Zero Retention Window</span>
-          <span class="flag-chip flag-warn">No Story</span>
-          <span class="flag-chip flag-warn">QTI Unverified</span>
+          <span class="flag-chip flag-info">Catalog Void — RI.K.2</span>
+          <span class="flag-chip flag-warn">Zero Retention Window</span>
+          <span class="flag-chip flag-ok">QTI Verified</span>
         </div>
       </div>
     </div>
@@ -485,74 +558,96 @@
       <div class="plan-header">
         <div>
           <div class="plan-title">Plan K.5 &nbsp;·&nbsp; 2026 ELA K.5</div>
-          <div class="plan-subtitle">Test date 2026-03-31 &nbsp;·&nbsp; 3 lessons assigned</div>
+          <div class="plan-subtitle">Test date 2026-03-31 &nbsp;·&nbsp; 3 lessons assigned &nbsp;·&nbsp; 94% complete</div>
         </div>
         <div class="verdict-chip fail">Fail</div>
       </div>
 
-      <!-- Score -->
+      <!-- Metrics -->
       <div class="plan-section">
-        <div class="section-label">Test Score</div>
-        <div class="score-line fail-score">3 / 10 &nbsp;<span class="pct">30%</span></div>
-        <div class="wrong-qs">Wrong: <span>Q2, Q4, Q5, Q7, Q8, Q9, Q10</span></div>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <div class="metric-label">Test Score</div>
+            <div class="metric-value mv-red">30%</div>
+            <div class="metric-sub">3 / 10 &nbsp;·&nbsp; Q2,4,5,7,8,9,10 wrong</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Coverage</div>
+            <div class="metric-value mv-red">43%</div>
+            <div class="metric-sub">3 of 7 — max possible</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Precision</div>
+            <div class="metric-value mv-green">100%</div>
+            <div class="metric-sub">3 of 3 lessons on-target</div>
+          </div>
+        </div>
       </div>
 
       <!-- Lessons -->
       <div class="plan-section">
         <div class="section-label">Lessons Assigned</div>
         <ul class="lesson-list">
-          <li><b>Simple Plurals</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Nouns/Plurals)</span></li>
-          <li><b>Beginning Sounds</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Phonics / Phonological Awareness)</span></li>
-          <li><b>Prepositions K</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Prepositions)</span></li>
+          <li><b>Simple Plurals</b> <span class="std">RF.K.3</span> <span style="color:#4b5563;font-size:11px;">Grammar — Nouns/Plurals</span></li>
+          <li><b>Beginning Sounds</b> <span class="std">RF.K.3</span> <span style="color:#4b5563;font-size:11px;">Phonics / Initial Consonants</span></li>
+          <li><b>Prepositions K</b> <span class="std">L.K.1.E</span> <span style="color:#4b5563;font-size:11px;">Grammar — Prepositions</span></li>
         </ul>
       </div>
 
       <!-- Alignment table -->
       <div class="plan-section" style="padding-left:0;padding-right:0;padding-bottom:0;">
-        <div class="section-label" style="padding:0 16px 5px;">Skill Alignment · 7 questions mapped</div>
+        <div class="section-label" style="padding:0 16px 5px;">Skill Alignment</div>
         <table class="mini-table">
           <thead>
             <tr>
               <td>Q</td>
-              <td>Lesson Assigned</td>
+              <td>Confirmed Skill</td>
+              <td>Lesson</td>
               <td>Status</td>
             </tr>
           </thead>
           <tbody>
-            <tr class="row-err">
+            <tr class="row-ok">
               <td>Q2</td>
-              <td><span class="uncovered-cell">None assigned</span></td>
-              <td><span class="badge badge-err">Uncovered</span></td>
-            </tr>
-            <tr class="row-err">
-              <td>Q4</td>
-              <td><span class="uncovered-cell">None — persistent from K.4</span></td>
-              <td><span class="badge badge-err">Uncovered</span></td>
-            </tr>
-            <tr class="row-err">
-              <td>Q5</td>
-              <td><span class="uncovered-cell">None — persistent from K.4</span></td>
-              <td><span class="badge badge-err">Uncovered</span></td>
-            </tr>
-            <tr class="row-warn">
-              <td>Q7</td>
-              <td>Beginning Sounds</td>
-              <td><span class="badge badge-warn">Phonics? (Unverified)</span></td>
-            </tr>
-            <tr class="row-err">
-              <td>Q8</td>
-              <td><span class="uncovered-cell">None assigned</span></td>
-              <td><span class="badge badge-err">Uncovered</span></td>
-            </tr>
-            <tr class="row-warn">
-              <td>Q9</td>
-              <td>Prepositions K</td>
-              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
-            </tr>
-            <tr class="row-warn">
-              <td>Q10</td>
+              <td><span class="standard-code">RF.K.3</span>Inflectional -s (plurals)</td>
               <td>Simple Plurals</td>
-              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+              <td><span class="badge badge-ok">Aligned</span></td>
+            </tr>
+            <tr class="row-warn">
+              <td>Q4</td>
+              <td><span class="standard-code">RF.K.3</span>CVC Initial Consonant</td>
+              <td>Beginning Sounds</td>
+              <td><span class="badge badge-warn">Proximity</span></td>
+            </tr>
+            <tr class="row-ok">
+              <td>Q5</td>
+              <td><span class="standard-code">L.K.1.E</span>Spatial Prepositions</td>
+              <td>Prepositions K</td>
+              <td><span class="badge badge-ok">Aligned</span></td>
+            </tr>
+            <tr class="row-void">
+              <td>Q7</td>
+              <td><span class="standard-code">RL.K.1</span>Narrative Key Detail</td>
+              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
+              <td><span class="badge badge-void">Catalog Void</span></td>
+            </tr>
+            <tr class="row-void">
+              <td>Q8</td>
+              <td><span class="standard-code">RL.K.1</span>Narrative Emotional Arc</td>
+              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
+              <td><span class="badge badge-void">Catalog Void</span></td>
+            </tr>
+            <tr class="row-void">
+              <td>Q9</td>
+              <td><span class="standard-code">RI.K.1</span>Informational Key Detail</td>
+              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
+              <td><span class="badge badge-void">Catalog Void</span></td>
+            </tr>
+            <tr class="row-void">
+              <td>Q10</td>
+              <td><span class="standard-code">RI.K.2</span>Main Idea — Info Text</td>
+              <td><span class="uncovered-cell">No lesson — catalog void</span></td>
+              <td><span class="badge badge-void">Catalog Void</span></td>
             </tr>
           </tbody>
         </table>
@@ -562,26 +657,52 @@
       <div class="plan-section">
         <div class="section-label">Flags</div>
         <div class="flags-row">
-          <span class="flag-chip flag-err">Severe Under-Coverage</span>
-          <span class="flag-chip flag-err">Persistent Q4/Q5</span>
-          <span class="flag-chip flag-warn">No Story</span>
-          <span class="flag-chip flag-warn">Phonics in Language Plan</span>
+          <span class="flag-chip flag-info">Catalog Void Majority (4/7)</span>
+          <span class="flag-chip flag-warn">Q10 RI.K.2 Persistent</span>
+          <span class="flag-chip flag-warn">Q4 Proximity Match</span>
+          <span class="flag-chip flag-ok">QTI Verified</span>
         </div>
       </div>
     </div>
 
   </div>
 
+  <!-- ── Catalog void panel ── -->
+  <div class="void-card">
+    <div class="void-header">Confirmed Catalog Voids — Comprehension Strategy Instruction</div>
+    <div class="void-body">
+      <div class="void-item">
+        <div class="void-skill">Narrative Key Detail Retrieval</div>
+        <div class="void-std">RL.K.1</div>
+        <div class="void-desc">K.5 Q7 + Q8. No Lalilo K lesson teaches how to isolate specific key details from narrative text. All K comprehension lessons are <b>practice-based read-alongs</b>, not explicit strategy instruction. Lessons 549 and 1628 were previously assigned — both resulted in <b>gap_persisted</b>.</div>
+      </div>
+      <div class="void-item">
+        <div class="void-skill">Informational Text Key Detail</div>
+        <div class="void-std">RI.K.1</div>
+        <div class="void-desc">K.5 Q9. No Lalilo K lesson teaches how to locate key details in informational text. Prerequisite decoding fluency gap (RF.K.4) also lacks a catalog lesson. Phonics lessons assigned for Q2/Q4 may partially address the access barrier.</div>
+      </div>
+      <div class="void-item">
+        <div class="void-skill">Main Idea Identification</div>
+        <div class="void-std">RI.K.2</div>
+        <div class="void-desc">K.4 Q10 + K.5 Q10 — <b>persistent across two tests.</b> No RI.K.2 explicit instruction lesson exists. Lesson 549 previously tried and gap_persisted. Agent reviewed 9 alternatives — none adequate. Strategy instruction does not exist in the Lalilo K catalog.</div>
+      </div>
+      <div class="void-item">
+        <div class="void-skill">Builder Assessment</div>
+        <div class="void-std">No errors</div>
+        <div class="void-desc">The builder agent <b>correctly identified all catalog voids</b>, assigned lessons for every addressable gap, self-flagged the Q4 proximity match, and documented prior failed attempts (549, 1628). All 3 assigned lessons on K.5 are justified — zero builder errors confirmed.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Macro concern banner ── -->
   <div class="macro-banner">
     <div class="macro-icon">⚠</div>
     <div>
-      <div class="macro-label">Macro Concern — Pattern of Failure</div>
+      <div class="macro-label">Macro Concern — Catalog-Constrained Repeated Failure</div>
       <div class="macro-text">
         <b>5 consecutive K ELA failures despite 100% Lalilo K base course completion.</b>
-        Hole-filling repeat-exposure approach appears insufficient. K.5 score regressed from 70% → 30% with 7/10 questions wrong.
-        Current 3-lesson plans cannot address the breadth of skill gaps at this failure rate.
-        <b>Guide review recommended</b> — student may require evaluation for reading difficulties, re-sequencing, or teacher escalation rather than automated hole-filling alone.
+        The K.5 analysis reveals the root cause: the ELA K tests assess RL.K.1, RI.K.1, and RI.K.2 comprehension skills for which <b>no Lalilo K direct instruction lesson exists</b>. Automated hole-filling cannot resolve these gaps. Practice stories (549, 1628) have already been tried and resulted in gap_persisted. The K.5 FAIL verdict is catalog-driven, not a builder error.
+        <b>Teacher-led explicit comprehension strategy instruction is required</b> — main idea identification, key detail retrieval, and informational text comprehension cannot be addressed through Lalilo alone.
       </div>
     </div>
   </div>
@@ -590,33 +711,11 @@
   <div class="stories-card">
     <div class="stories-header">Comprehension Stories — Assessment</div>
     <div class="stories-body">
-
-      <!-- K.4 -->
-      <div class="story-col">
-        <div class="story-col-label k4-lbl">K.4 — Possibly Warranted</div>
-        <div class="story-body-text">
-          Only 3 questions wrong at 70%. Assigned lessons cover <b>vocabulary, capitalization, and punctuation</b> — if Q4/Q5/Q10 are purely skill-based (not comprehension), a story may not have been critical. Monitor whether K.5 confirms comprehension as an unaddressed gap.
-        </div>
-        <div class="story-note">No story assigned. Low urgency given narrow failure scope — but ELA title suggests comprehension may be present.</div>
+      <div class="verdict-line">Not warranted — practice stories have already failed for this student</div>
+      Despite a 70% failure rate on K.5 and ELA title suggesting comprehension scope, assigning additional Lalilo comprehension stories is <b>not the appropriate intervention</b>. The builder agent confirmed that Lesson 549 ('The Story of a Seed') and Lesson 1628 ('One Blue Crayon') were previously assigned for the same RL.K.1 and RI.K.2 gap types — <b>both resulted in gap_persisted</b>. All available K comprehension stories share the same practice-only structure; none provide explicit strategy instruction. Assigning another story would repeat the failed approach without addressing the root cause.
+      <div class="prior-note">
+        Previously tried: Lesson 549 — gap_persisted · Lesson 1628 — gap_persisted · Agent reviewed 9 alternatives for RI.K.2 — none adequate. Teacher-led instruction is the correct next step, not additional Lalilo story practice.
       </div>
-
-      <!-- K.5 -->
-      <div class="story-col">
-        <div class="story-col-label k5-lbl">K.5 — Warranted</div>
-        <div class="story-body-text">
-          7/10 failure (30%) on an ELA test strongly indicates comprehension questions are among the wrong answers. <b>No story was assigned.</b> With 41 K comprehension stories available in the Lalilo catalog, at least one should have been included. Candidate stories:
-        </div>
-        <ul class="story-list">
-          <li><b>On My Way to Kindergarten</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 550) — narrative comprehension, K level</span></li>
-          <li><b>See / Hear / Smell / Taste / Touch</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 547) — informational, vocabulary &amp; main idea</span></li>
-          <li><b>Harvest Time</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 548) — informational, vocabulary &amp; comprehension</span></li>
-          <li><b>What Do I See?</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 213) — descriptive, identifying details</span></li>
-        </ul>
-      </div>
-
-    </div>
-    <div class="stories-footer">
-      Story content verification pending — load <code>student.lalilo.com/#/map/{id}/ready</code> to confirm question types before assigning.
     </div>
   </div>
 
