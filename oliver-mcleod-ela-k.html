@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QC Report — Oliver McLeod — ELA K</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f1117;
+    color: #e8eaf0;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 20px 24px;
+  }
+
+  .page {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .header {
+    background: linear-gradient(135deg, #1e2235 0%, #16213e 60%, #1a1a2e 100%);
+    border: 1px solid #2a2d45;
+    border-radius: 12px;
+    padding: 18px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+  .header-left h1 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.3px;
+    margin-bottom: 3px;
+  }
+  .header-left .sub {
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .header-right {
+    text-align: right;
+    font-size: 11.5px;
+    color: #4b5563;
+    line-height: 2;
+  }
+
+  /* ── Two-plan columns ────────────────────────────────── */
+  .plans-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  /* ── Plan card ───────────────────────────────────────── */
+  .plan-card {
+    background: #13151f;
+    border: 1px solid #2a2d45;
+    border-radius: 12px;
+    overflow: hidden;
+    border-top-width: 3px;
+  }
+  .plan-card.k4 { border-top-color: #f59e0b; }
+  .plan-card.k5 { border-top-color: #dc2626; }
+
+  .plan-header {
+    padding: 13px 16px 11px;
+    background: #0f1117;
+    border-bottom: 1px solid #1e2235;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .plan-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #e5e7eb;
+    letter-spacing: -0.2px;
+  }
+  .plan-subtitle {
+    font-size: 11px;
+    color: #4b5563;
+    margin-top: 1px;
+  }
+
+  /* Verdict chip */
+  .verdict-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .verdict-chip.cond-pass {
+    background: #1f1500;
+    color: #fbbf24;
+    border: 1px solid #78350f;
+  }
+  .verdict-chip.fail {
+    background: #2d0a0a;
+    color: #f87171;
+    border: 1px solid #7f1d1d;
+  }
+
+  /* Plan body sections */
+  .plan-section {
+    padding: 11px 16px;
+    border-bottom: 1px solid #1a1d2e;
+  }
+  .plan-section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: #374151;
+    margin-bottom: 5px;
+  }
+
+  .score-line {
+    font-size: 15px;
+    font-weight: 800;
+    color: #e5e7eb;
+    margin-bottom: 2px;
+  }
+  .score-line .pct { color: #f59e0b; }
+  .score-line.fail-score .pct { color: #f87171; }
+  .wrong-qs {
+    font-size: 11px;
+    color: #6b7280;
+  }
+  .wrong-qs span { color: #9ca3af; font-weight: 600; }
+
+  .lesson-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .lesson-list li {
+    font-size: 12px;
+    color: #9ca3af;
+    padding: 3px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .lesson-list li::before {
+    content: "·";
+    color: #374151;
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .lesson-list li b { color: #d1d5db; font-weight: 600; }
+
+  /* ── Alignment mini-table ────────────────────────────── */
+  .mini-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .mini-table thead td {
+    padding: 5px 10px;
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    color: #374151;
+    background: #0d0f1a;
+    border-bottom: 1px solid #1a1d2e;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .mini-table tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #1a1d2e;
+    vertical-align: middle;
+    font-size: 11.5px;
+    color: #9ca3af;
+  }
+  .mini-table tbody tr:last-child td { border-bottom: none; }
+  .mini-table tbody tr:hover td { background: #161929; }
+
+  .mini-table tbody td:first-child {
+    color: #6b7280;
+    font-weight: 700;
+    font-size: 11px;
+    white-space: nowrap;
+    width: 36px;
+  }
+  .mini-table tbody td:nth-child(2) {
+    color: #d1d5db;
+  }
+  .mini-table tbody td:last-child {
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  /* Row accent via left border */
+  .mini-table tbody .row-warn td:first-child  { border-left: 2px solid #f59e0b; padding-left: 8px; }
+  .mini-table tbody .row-err  td:first-child  { border-left: 2px solid #dc2626; padding-left: 8px; }
+
+  /* Lesson cell italic for uncovered */
+  .uncovered-cell {
+    color: #4b5563;
+    font-style: italic;
+    font-size: 11px;
+  }
+
+  /* ── Flags ───────────────────────────────────────────── */
+  .flags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .flag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+  }
+  .flag-chip::before { content: "⚑"; font-size: 9px; }
+  .flag-err  { background: #2d0a0a; color: #f87171; }
+  .flag-warn { background: #1f1500; color: #fbbf24; }
+  .flag-info { background: #0c1e3d; color: #60a5fa; }
+
+  /* ── Status badges ───────────────────────────────────── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+  .badge::before { content: "●"; font-size: 7px; }
+  .badge-ok   { background: #052e16; color: #34d399; }
+  .badge-err  { background: #2d0a0a; color: #f87171; }
+  .badge-void { background: #0c1e3d; color: #60a5fa; }
+  .badge-warn { background: #1f1500; color: #fbbf24; }
+  .badge-skip { background: #1a1200; color: #d97706; }
+  .badge-amber-unverified { background: #1f1500; color: #fbbf24; }
+
+  /* ── Macro concern banner ────────────────────────────── */
+  .macro-banner {
+    background: #130b0b;
+    border: 1px solid #5c1f1f;
+    border-left: 4px solid #dc2626;
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .macro-icon {
+    font-size: 18px;
+    line-height: 1;
+    padding-top: 1px;
+  }
+  .macro-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #7f1d1d;
+    margin-bottom: 4px;
+  }
+  .macro-text {
+    font-size: 12.5px;
+    color: #d1d5db;
+    line-height: 1.55;
+  }
+  .macro-text b { color: #f87171; font-weight: 700; }
+
+  /* ── Stories panel ───────────────────────────────────── */
+  .stories-card {
+    background: #13151f;
+    border: 1px solid #2a2d45;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stories-header {
+    padding: 10px 16px;
+    background: #0f1117;
+    border-bottom: 1px solid #1e2235;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: #374151;
+  }
+  .stories-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .story-col {
+    padding: 12px 16px;
+  }
+  .story-col:first-child {
+    border-right: 1px solid #1a1d2e;
+  }
+  .story-col-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    margin-bottom: 6px;
+  }
+  .story-col-label.k4-lbl { color: #78350f; }
+  .story-col-label.k5-lbl { color: #7f1d1d; }
+  .story-body-text {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.55;
+    margin-bottom: 7px;
+  }
+  .story-body-text b { color: #9ca3af; font-weight: 600; }
+  .story-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 8px;
+  }
+  .story-list li {
+    font-size: 11.5px;
+    color: #9ca3af;
+    padding: 2px 0;
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+  }
+  .story-list li::before {
+    content: "→";
+    color: #374151;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .story-list li b { color: #d1d5db; font-weight: 600; }
+  .story-note {
+    font-size: 11px;
+    color: #4b5563;
+    line-height: 1.5;
+    font-style: italic;
+    border-top: 1px solid #1a1d2e;
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+  .stories-footer {
+    padding: 8px 16px 10px;
+    border-top: 1px solid #1a1d2e;
+    font-size: 11px;
+    color: #4b5563;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .stories-footer code {
+    background: #1a1d2e;
+    color: #60a5fa;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 10.5px;
+    font-style: normal;
+    font-family: 'Courier New', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Oliver McLeod — ELA K</h1>
+      <div class="sub">Alpha Anywhere Center &nbsp;·&nbsp; Age Grade K &nbsp;·&nbsp; Hole-Filling QC &nbsp;·&nbsp; Plans K.4 &amp; K.5</div>
+    </div>
+    <div class="header-right">
+      Test (K.4) &nbsp;2026-03-26<br>
+      Test (K.5) &nbsp;2026-03-31<br>
+      QC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2026-04-01
+    </div>
+  </div>
+
+  <!-- ── Two-plan columns ── -->
+  <div class="plans-row">
+
+    <!-- K.4 Column -->
+    <div class="plan-card k4">
+      <div class="plan-header">
+        <div>
+          <div class="plan-title">Plan K.4 &nbsp;·&nbsp; 2026 ELA K.4</div>
+          <div class="plan-subtitle">Test date 2026-03-26 &nbsp;·&nbsp; 3 lessons assigned</div>
+        </div>
+        <div class="verdict-chip cond-pass">Conditional Pass</div>
+      </div>
+
+      <!-- Score -->
+      <div class="plan-section">
+        <div class="section-label">Test Score</div>
+        <div class="score-line">7 / 10 &nbsp;<span class="pct">70%</span></div>
+        <div class="wrong-qs">Wrong: <span>Q4, Q5, Q10</span></div>
+      </div>
+
+      <!-- Lessons -->
+      <div class="plan-section">
+        <div class="section-label">Lessons Assigned</div>
+        <ul class="lesson-list">
+          <li><b>Categories K</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Vocabulary / Categorization)</span></li>
+          <li><b>Capitalization of "I"</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Capitalization)</span></li>
+          <li><b>Punctuation ( . )</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Punctuation)</span></li>
+        </ul>
+      </div>
+
+      <!-- Alignment table -->
+      <div class="plan-section" style="padding-left:0;padding-right:0;padding-bottom:0;">
+        <div class="section-label" style="padding:0 16px 5px;">Skill Alignment · 3 questions mapped</div>
+        <table class="mini-table">
+          <thead>
+            <tr>
+              <td>Q</td>
+              <td>Lesson Assigned</td>
+              <td>Status</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-warn">
+              <td>Q4</td>
+              <td>Categories K</td>
+              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+            </tr>
+            <tr class="row-warn">
+              <td>Q5</td>
+              <td>Capitalization of "I"</td>
+              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+            </tr>
+            <tr class="row-warn">
+              <td>Q10</td>
+              <td>Punctuation ( . )</td>
+              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Flags -->
+      <div class="plan-section">
+        <div class="section-label">Flags</div>
+        <div class="flags-row">
+          <span class="flag-chip flag-err">Zero Retention Window</span>
+          <span class="flag-chip flag-warn">No Story</span>
+          <span class="flag-chip flag-warn">QTI Unverified</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- K.5 Column -->
+    <div class="plan-card k5">
+      <div class="plan-header">
+        <div>
+          <div class="plan-title">Plan K.5 &nbsp;·&nbsp; 2026 ELA K.5</div>
+          <div class="plan-subtitle">Test date 2026-03-31 &nbsp;·&nbsp; 3 lessons assigned</div>
+        </div>
+        <div class="verdict-chip fail">Fail</div>
+      </div>
+
+      <!-- Score -->
+      <div class="plan-section">
+        <div class="section-label">Test Score</div>
+        <div class="score-line fail-score">3 / 10 &nbsp;<span class="pct">30%</span></div>
+        <div class="wrong-qs">Wrong: <span>Q2, Q4, Q5, Q7, Q8, Q9, Q10</span></div>
+      </div>
+
+      <!-- Lessons -->
+      <div class="plan-section">
+        <div class="section-label">Lessons Assigned</div>
+        <ul class="lesson-list">
+          <li><b>Simple Plurals</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Nouns/Plurals)</span></li>
+          <li><b>Beginning Sounds</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Phonics / Phonological Awareness)</span></li>
+          <li><b>Prepositions K</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(Grammar — Prepositions)</span></li>
+        </ul>
+      </div>
+
+      <!-- Alignment table -->
+      <div class="plan-section" style="padding-left:0;padding-right:0;padding-bottom:0;">
+        <div class="section-label" style="padding:0 16px 5px;">Skill Alignment · 7 questions mapped</div>
+        <table class="mini-table">
+          <thead>
+            <tr>
+              <td>Q</td>
+              <td>Lesson Assigned</td>
+              <td>Status</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-err">
+              <td>Q2</td>
+              <td><span class="uncovered-cell">None assigned</span></td>
+              <td><span class="badge badge-err">Uncovered</span></td>
+            </tr>
+            <tr class="row-err">
+              <td>Q4</td>
+              <td><span class="uncovered-cell">None — persistent from K.4</span></td>
+              <td><span class="badge badge-err">Uncovered</span></td>
+            </tr>
+            <tr class="row-err">
+              <td>Q5</td>
+              <td><span class="uncovered-cell">None — persistent from K.4</span></td>
+              <td><span class="badge badge-err">Uncovered</span></td>
+            </tr>
+            <tr class="row-warn">
+              <td>Q7</td>
+              <td>Beginning Sounds</td>
+              <td><span class="badge badge-warn">Phonics? (Unverified)</span></td>
+            </tr>
+            <tr class="row-err">
+              <td>Q8</td>
+              <td><span class="uncovered-cell">None assigned</span></td>
+              <td><span class="badge badge-err">Uncovered</span></td>
+            </tr>
+            <tr class="row-warn">
+              <td>Q9</td>
+              <td>Prepositions K</td>
+              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+            </tr>
+            <tr class="row-warn">
+              <td>Q10</td>
+              <td>Simple Plurals</td>
+              <td><span class="badge badge-amber-unverified">Assumed Aligned</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Flags -->
+      <div class="plan-section">
+        <div class="section-label">Flags</div>
+        <div class="flags-row">
+          <span class="flag-chip flag-err">Severe Under-Coverage</span>
+          <span class="flag-chip flag-err">Persistent Q4/Q5</span>
+          <span class="flag-chip flag-warn">No Story</span>
+          <span class="flag-chip flag-warn">Phonics in Language Plan</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Macro concern banner ── -->
+  <div class="macro-banner">
+    <div class="macro-icon">⚠</div>
+    <div>
+      <div class="macro-label">Macro Concern — Pattern of Failure</div>
+      <div class="macro-text">
+        <b>5 consecutive K ELA failures despite 100% Lalilo K base course completion.</b>
+        Hole-filling repeat-exposure approach appears insufficient. K.5 score regressed from 70% → 30% with 7/10 questions wrong.
+        Current 3-lesson plans cannot address the breadth of skill gaps at this failure rate.
+        <b>Guide review recommended</b> — student may require evaluation for reading difficulties, re-sequencing, or teacher escalation rather than automated hole-filling alone.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Stories panel ── -->
+  <div class="stories-card">
+    <div class="stories-header">Comprehension Stories — Assessment</div>
+    <div class="stories-body">
+
+      <!-- K.4 -->
+      <div class="story-col">
+        <div class="story-col-label k4-lbl">K.4 — Possibly Warranted</div>
+        <div class="story-body-text">
+          Only 3 questions wrong at 70%. Assigned lessons cover <b>vocabulary, capitalization, and punctuation</b> — if Q4/Q5/Q10 are purely skill-based (not comprehension), a story may not have been critical. Monitor whether K.5 confirms comprehension as an unaddressed gap.
+        </div>
+        <div class="story-note">No story assigned. Low urgency given narrow failure scope — but ELA title suggests comprehension may be present.</div>
+      </div>
+
+      <!-- K.5 -->
+      <div class="story-col">
+        <div class="story-col-label k5-lbl">K.5 — Warranted</div>
+        <div class="story-body-text">
+          7/10 failure (30%) on an ELA test strongly indicates comprehension questions are among the wrong answers. <b>No story was assigned.</b> With 41 K comprehension stories available in the Lalilo catalog, at least one should have been included. Candidate stories:
+        </div>
+        <ul class="story-list">
+          <li><b>On My Way to Kindergarten</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 550) — narrative comprehension, K level</span></li>
+          <li><b>See / Hear / Smell / Taste / Touch</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 547) — informational, vocabulary &amp; main idea</span></li>
+          <li><b>Harvest Time</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 548) — informational, vocabulary &amp; comprehension</span></li>
+          <li><b>What Do I See?</b> &nbsp;<span style="color:#4b5563;font-size:11px;">(id: 213) — descriptive, identifying details</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="stories-footer">
+      Story content verification pending — load <code>student.lalilo.com/#/map/{id}/ready</code> to confirm question types before assigning.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
