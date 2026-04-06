@@ -5,7 +5,6 @@
 <title>QC Report — Sofia Cruz-peralta — ELA K.4</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -14,346 +13,131 @@
     color: #e8eaf0;
     font-size: 13px;
     line-height: 1.5;
-    min-height: 100vh;
     padding: 20px 24px;
   }
+  .page { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
 
-  .page {
-    max-width: 760px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  /* ── Header ─────────────────────────────────────────── */
+  /* Header */
   .header {
     background: linear-gradient(135deg, #1e2235 0%, #16213e 60%, #1a1a2e 100%);
     border: 1px solid #2a2d45;
     border-radius: 12px;
-    padding: 18px 24px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-    align-items: start;
-  }
-  .header-left h1 {
-    font-size: 18px;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.3px;
-    margin-bottom: 3px;
-  }
-  .header-left .sub { font-size: 12px; color: #6b7280; }
-  .header-right {
-    text-align: right;
-    font-size: 11.5px;
-    color: #4b5563;
-    line-height: 2;
-  }
-
-  /* ── Plan card ───────────────────────────────────────── */
-  .plan-card {
-    background: #13151f;
-    border: 1px solid #2a2d45;
-    border-radius: 12px;
-    overflow: hidden;
-    border-top-width: 3px;
-  }
-  .plan-card.pass { border-top-color: #059669; }
-
-  .plan-header {
-    padding: 13px 16px 11px;
-    background: #0f1117;
-    border-bottom: 1px solid #1e2235;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 16px;
   }
-  .plan-title { font-size: 13px; font-weight: 700; color: #e5e7eb; letter-spacing: -0.2px; }
-  .plan-subtitle { font-size: 11px; color: #4b5563; margin-top: 1px; }
-
+  .header h1 { font-size: 17px; font-weight: 800; color: #fff; }
+  .header .sub { font-size: 11.5px; color: #4b5563; margin-top: 2px; }
+  .header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .meta-pill {
+    font-size: 11px; color: #6b7280;
+    background: #0d0f1a; border: 1px solid #1e2235;
+    border-radius: 5px; padding: 3px 8px;
+    white-space: nowrap;
+  }
   .verdict-chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 10.5px;
-    font-weight: 800;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    flex-shrink: 0;
+    padding: 5px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
   }
-  .verdict-chip.pass { background: #052e16; color: #34d399; border: 1px solid #065f46; }
+  .v-pass { background: #052e16; color: #34d399; border: 1px solid #065f46; }
 
-  .plan-section {
-    padding: 11px 16px;
-    border-bottom: 1px solid #1a1d2e;
-  }
-  .plan-section:last-child { border-bottom: none; }
-
-  .section-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .7px;
-    color: #374151;
-    margin-bottom: 5px;
-  }
-
-  /* ── Metrics row ────────────────────────────────────── */
-  .metrics-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-  }
-  .metric-item {
-    background: #0d0f1a;
-    border: 1px solid #1e2235;
-    border-radius: 8px;
-    padding: 8px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .metric-label {
-    font-size: 9.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    color: #374151;
-  }
-  .metric-value { font-size: 18px; font-weight: 800; line-height: 1; }
-  .metric-sub { font-size: 10px; color: #6b7280; }
-  .mv-green { color: #34d399; }
-  .mv-amber { color: #f59e0b; }
-  .mv-white { color: #e5e7eb; }
-
-  /* ── Lesson list ────────────────────────────────────── */
-  .lesson-list { list-style: none; display: flex; flex-direction: column; gap: 3px; }
-  .lesson-list li {
-    font-size: 12px;
-    color: #9ca3af;
-    padding: 3px 0;
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-  }
-  .lesson-list li::before { content: "·"; color: #374151; font-size: 14px; line-height: 1; flex-shrink: 0; }
-  .lesson-list li b { color: #d1d5db; font-weight: 600; }
-  .lesson-list li .std {
-    color: #4b5563;
-    font-size: 10.5px;
-    font-family: 'Courier New', monospace;
-    background: #1a1d2e;
-    padding: 1px 5px;
-    border-radius: 3px;
-  }
-  .lesson-list li .tag-prox {
-    color: #92400e;
-    font-size: 9.5px;
-    background: #1f1500;
-    border: 1px solid #78350f;
-    padding: 0px 5px;
-    border-radius: 3px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .3px;
-  }
-
-  /* ── Alignment mini-table ────────────────────────────── */
-  .mini-table { width: 100%; border-collapse: collapse; }
-  .mini-table thead td {
-    padding: 5px 10px;
-    font-size: 9.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    color: #374151;
-    background: #0d0f1a;
-    border-bottom: 1px solid #1a1d2e;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-  .mini-table tbody td {
-    padding: 8px 10px;
-    border-bottom: 1px solid #1a1d2e;
-    vertical-align: middle;
-    font-size: 11.5px;
-    color: #9ca3af;
-  }
-  .mini-table tbody tr:last-child td { border-bottom: none; }
-  .mini-table tbody tr:hover td { background: #161929; }
-  .mini-table tbody td:first-child {
-    color: #6b7280; font-weight: 700; font-size: 11px; white-space: nowrap; width: 36px;
-  }
-  .mini-table tbody td:nth-child(2) { color: #d1d5db; }
-  .mini-table tbody td:last-child { white-space: nowrap; text-align: right; }
-
-  .standard-code {
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    color: #4b5563;
-    background: #1a1d2e;
-    padding: 1px 5px;
-    border-radius: 3px;
-    display: inline-block;
-    margin-right: 4px;
-  }
-  .standard-code.mismatch {
-    color: #fca5a5;
-    background: #2d0a0a;
-    border: 1px solid #7f1d1d;
-    text-decoration: line-through;
-  }
-  .standard-code.correct {
-    color: #6ee7b7;
-    background: #052e16;
-    border: 1px solid #065f46;
-  }
-
-  .mini-table tbody .row-ok   td:first-child { border-left: 2px solid #059669; padding-left: 8px; }
-  .mini-table tbody .row-prox td:first-child { border-left: 2px solid #d97706; padding-left: 8px; }
-  .mini-table tbody .row-note td:first-child { border-left: 2px solid #6366f1; padding-left: 8px; }
-
-  /* ── Flags ───────────────────────────────────────────── */
-  .flags-row { display: flex; flex-wrap: wrap; gap: 5px; }
-  .flag-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .3px;
-    text-transform: uppercase;
-  }
-  .flag-chip::before { content: "⚑"; font-size: 9px; }
-  .flag-warn { background: #1f1500; color: #fbbf24; }
-  .flag-info { background: #0c1e3d; color: #60a5fa; }
-  .flag-err  { background: #2d0a0a; color: #f87171; }
-
-  /* ── Status badges ───────────────────────────────────── */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 3px 8px;
-    border-radius: 5px;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: .3px;
-  }
-  .badge::before { content: "●"; font-size: 7px; }
-  .badge-ok      { background: #052e16; color: #34d399; }
-  .badge-prox    { background: #1f1500; color: #fbbf24; }
-  .badge-bld-err { background: #2d0a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
-  .badge-note    { background: #1a1a3e; color: #a5b4fc; }
-
-  /* ── Builder error panel ─────────────────────────────── */
-  .error-card {
-    background: #130b0b;
-    border: 1px solid #5c1f1f;
-    border-left: 4px solid #dc2626;
+  /* Card */
+  .card {
+    background: #13151f;
+    border: 1px solid #2a2d45;
     border-radius: 10px;
     overflow: hidden;
   }
-  .error-header {
-    padding: 10px 16px;
-    background: #160a0a;
-    border-bottom: 1px solid #5c1f1f;
-    font-size: 10.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .8px;
-    color: #7f1d1d;
-  }
-  .error-body { padding: 10px 16px; display: flex; flex-direction: column; gap: 8px; }
-  .error-item { font-size: 11.5px; color: #9ca3af; }
-  .error-item strong { color: #fca5a5; display: block; margin-bottom: 2px; }
-  .error-item .impact-low { color: #34d399; font-size: 10.5px; font-weight: 700; }
-
-  /* ── Open items ──────────────────────────────────────── */
-  .open-items-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .open-items-list li {
-    font-size: 11.5px;
-    color: #9ca3af;
-    padding-left: 14px;
-    position: relative;
-  }
-  .open-items-list li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: #374151;
-  }
-
-  /* ── QC note ─────────────────────────────────────────── */
-  .qc-note {
-    background: #0d1424;
-    border: 1px solid #1e3a5f;
-    border-left: 3px solid #3b82f6;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 11.5px;
-    color: #93c5fd;
-    line-height: 1.6;
-  }
-
-  /* ── Story panel ─────────────────────────────────────── */
-  .story-card {
-    background: #0d1a0d;
-    border: 1px solid #1a3d1a;
-    border-left: 4px solid #059669;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .story-header {
-    padding: 10px 16px;
-    background: #0a150a;
-    border-bottom: 1px solid #1a3d1a;
-    font-size: 10.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .8px;
-    color: #065f46;
-  }
-  .story-body { padding: 10px 16px; font-size: 11.5px; color: #9ca3af; }
-
-  /* ── Prior lessons panel ─────────────────────────────── */
-  .prior-card {
-    background: #111129;
-    border: 1px solid #1e2235;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .prior-header {
-    padding: 10px 16px;
-    background: #0d0f1a;
+  .card-header {
+    padding: 9px 14px;
+    background: #0f1117;
     border-bottom: 1px solid #1e2235;
-    font-size: 10.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .8px;
-    color: #374151;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .7px; color: #374151;
+    display: flex; align-items: center; justify-content: space-between;
   }
-  .prior-body { padding: 10px 16px; }
+  .card-body { padding: 0; }
 
-  /* ── Footer note ─────────────────────────────────────── */
-  .footer-note {
-    font-size: 10.5px;
-    color: #374151;
-    text-align: center;
-    padding: 4px 0 8px;
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    border-bottom: 1px solid #1e2235;
   }
+  .stat {
+    flex: 1;
+    padding: 10px 14px;
+    border-right: 1px solid #1e2235;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #374151; }
+  .stat-value { font-size: 20px; font-weight: 800; line-height: 1.1; margin-top: 1px; }
+  .stat-sub { font-size: 10px; color: #6b7280; }
+  .sg { color: #34d399; }
+  .sa { color: #f59e0b; }
+
+  /* Question table */
+  .qtable { width: 100%; border-collapse: collapse; }
+  .qtable thead td {
+    padding: 6px 12px;
+    font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .5px; color: #374151;
+    background: #0d0f1a; border-bottom: 1px solid #1a1d2e;
+  }
+  .qtable tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #1a1d2e;
+    font-size: 11.5px; color: #9ca3af;
+    vertical-align: top;
+  }
+  .qtable tbody tr:last-child td { border-bottom: none; }
+  .qtable tbody tr:hover td { background: #161929; }
+
+  .qtable tbody td:first-child {
+    font-weight: 700; font-size: 11px; color: #6b7280;
+    width: 32px; padding-left: 10px;
+  }
+  .qtable tbody .row-ok  td:first-child { border-left: 2px solid #059669; }
+  .qtable tbody .row-prx td:first-child { border-left: 2px solid #d97706; }
+
+  .std {
+    font-family: 'Courier New', monospace; font-size: 10px;
+    padding: 1px 5px; border-radius: 3px; display: inline-block; margin-right: 3px;
+  }
+  .std-ok  { color: #6ee7b7; background: #052e16; border: 1px solid #065f46; }
+  .std-err { color: #fca5a5; background: #2d0a0a; border: 1px solid #7f1d1d; text-decoration: line-through; }
+  .std-dim { color: #4b5563; background: #1a1d2e; }
+
+  .lesson-name { color: #d1d5db; font-weight: 600; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    padding: 2px 7px; border-radius: 4px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .3px; white-space: nowrap;
+  }
+  .badge::before { content: "●"; font-size: 6px; }
+  .b-ok   { background: #052e16; color: #34d399; }
+  .b-prx  { background: #1f1500; color: #fbbf24; }
+
+  /* Notes list */
+  .note-list { list-style: none; display: flex; flex-direction: column; }
+  .note-list li {
+    padding: 8px 14px;
+    border-bottom: 1px solid #1a1d2e;
+    font-size: 11.5px; color: #9ca3af;
+    display: flex; gap: 8px; align-items: baseline;
+  }
+  .note-list li:last-child { border-bottom: none; }
+  .note-list .note-tag {
+    font-size: 9.5px; font-weight: 700; letter-spacing: .3px;
+    padding: 1px 6px; border-radius: 3px; white-space: nowrap; flex-shrink: 0;
+  }
+  .nt-warn { background: #1f1500; color: #fbbf24; }
+  .nt-watch { background: #0c1e3d; color: #60a5fa; }
+  .nt-info { background: #111129; color: #6b7280; border: 1px solid #1e2235; }
+
+  .footer { font-size: 10px; color: #374151; text-align: center; padding: 2px 0 6px; }
 </style>
 </head>
 <body>
@@ -361,74 +145,43 @@
 
   <!-- Header -->
   <div class="header">
-    <div class="header-left">
+    <div>
       <h1>Sofia Cruz-peralta</h1>
-      <div class="sub">Alpha 2026 ELA K.4 &nbsp;·&nbsp; Grade K Language &nbsp;·&nbsp; Age grade 2 working at GK</div>
+      <div class="sub">Alpha 2026 ELA K.4 &nbsp;·&nbsp; Grade K Language &nbsp;·&nbsp; Age-grade 2 &nbsp;·&nbsp; QC 2026-04-05 &nbsp;·&nbsp; QTI verified</div>
     </div>
     <div class="header-right">
-      Test date: 2026-03-18<br>
-      Score: 5/10 (50%)<br>
-      QC date: 2026-04-05<br>
-      QTI: Verified
+      <span class="meta-pill">5/10 &nbsp;·&nbsp; 2026-03-18</span>
+      <span class="verdict-chip v-pass">PASS</span>
     </div>
   </div>
 
-  <!-- Plan overview -->
-  <div class="plan-card pass">
-    <div class="plan-header">
-      <div>
-        <div class="plan-title">[Lalilo] Language G0 hole-filling</div>
-        <div class="plan-subtitle">Course 8064027e · 5 lessons · 100% complete (2026-03-18 → 2026-03-23)</div>
+  <!-- Main card: stats + question table -->
+  <div class="card">
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-label">Coverage</div>
+        <div class="stat-value sg">100%</div>
+        <div class="stat-sub">3/3 clusters</div>
       </div>
-      <div class="verdict-chip pass">PASS</div>
-    </div>
-
-    <!-- Metrics -->
-    <div class="plan-section">
-      <div class="section-label">QC Metrics</div>
-      <div class="metrics-row">
-        <div class="metric-item">
-          <div class="metric-label">Coverage</div>
-          <div class="metric-value mv-green">100%</div>
-          <div class="metric-sub">3/3 skill clusters addressed</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-label">Precision</div>
-          <div class="metric-value mv-green">100%</div>
-          <div class="metric-sub">5/5 lessons on-target</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-label">Wrong Qs</div>
-          <div class="metric-value mv-amber">5</div>
-          <div class="metric-sub">Q4 Q5 Q6 Q7 Q9</div>
-        </div>
+      <div class="stat">
+        <div class="stat-label">Precision</div>
+        <div class="stat-value sg">100%</div>
+        <div class="stat-sub">5/5 lessons on-target</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Wrong</div>
+        <div class="stat-value sa">5</div>
+        <div class="stat-sub">Q4 Q5 Q6 Q7 Q9</div>
       </div>
     </div>
 
-    <!-- Lessons assigned -->
-    <div class="plan-section">
-      <div class="section-label">Lessons Assigned (5)</div>
-      <ul class="lesson-list">
-        <li><b>Word Family "un"</b> <span class="std">RF.K.3</span> — Prereq for Q9 (bun/rug CVC decoding)</li>
-        <li><b>See, Hear, Smell, Taste, Touch</b> <span class="std">RI.K.1</span> — Informational comp → Q6, Q7, Q9</li>
-        <li><b>Word Family "et"</b> <span class="std">RF.K.3</span> <span class="tag-prox">Proximity</span> — Prereq for Q7 (ten/one, short-e); -et ≠ -en family</li>
-        <li><b>Capitalization of word "I"</b> <span class="std">L.K.2.A</span> — Direct instruction → Q5</li>
-        <li><b>Categories K</b> <span class="std">L.K.5.A</span> — Semantic categorization → Q4</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Skill alignment table -->
-  <div class="plan-card pass">
-    <div class="plan-header">
-      <div class="plan-title">Skill Alignment — Failed Questions</div>
-    </div>
-    <table class="mini-table">
+    <table class="qtable">
       <thead>
         <tr>
           <td>Q</td>
-          <td>Standard (QTI Verified)</td>
-          <td>Skill</td>
+          <td>Standard (QTI)</td>
+          <td>Error</td>
+          <td>Assigned Lesson</td>
           <td style="text-align:right">Status</td>
         </tr>
       </thead>
@@ -436,184 +189,84 @@
         <tr class="row-ok">
           <td>Q4</td>
           <td>
-            <span class="standard-code mismatch" title="Builder said RF.K.2 — incorrect">RF.K.2</span>
-            <span class="standard-code correct">L.K.5.A</span>
-            Semantic word categorization
+            <span class="std std-err" title="Builder said RF.K.2">RF.K.2</span>
+            <span class="std std-ok">L.K.5.A</span>
           </td>
-          <td>Student sorted by rhyme (run) not meaning (nut). Builder labeled RF.K.2; QTI = L.K.5.A. Lesson choice correct.</td>
-          <td><span class="badge badge-ok">ALIGNED</span></td>
+          <td>Sorted by rhyme ("run") not meaning ("nut")</td>
+          <td><span class="lesson-name">Categories K</span></td>
+          <td style="text-align:right"><span class="badge b-ok">Aligned</span></td>
         </tr>
         <tr class="row-ok">
           <td>Q5</td>
-          <td>
-            <span class="standard-code correct">L.K.2.A</span>
-            Capitalize pronoun "I"
-          </td>
-          <td>Chose "i have a red cup." over "I have a red cup." Cap of word I lesson is precise match.</td>
-          <td><span class="badge badge-ok">ALIGNED</span></td>
+          <td><span class="std std-ok">L.K.2.A</span></td>
+          <td>Chose "i have a red cup." — lowercase pronoun I</td>
+          <td><span class="lesson-name">Capitalization of word "I"</span></td>
+          <td style="text-align:right"><span class="badge b-ok">Aligned</span></td>
         </tr>
         <tr class="row-ok">
           <td>Q6</td>
           <td>
-            <span class="standard-code mismatch" title="Builder said RL.K.1 — incorrect">RL.K.1</span>
-            <span class="standard-code correct">RI.K.1</span>
-            <span class="standard-code" style="color:#a5b4fc;background:#1a1a3e">RL.K.3</span>
-            Key detail (NOT descriptor)
+            <span class="std std-err" title="Builder said RL.K.1">RL.K.1</span>
+            <span class="std std-ok">RI.K.1</span>
+            <span class="std std-dim">RL.K.3</span>
           </td>
-          <td>Chose "fat" (IS in text) not "wet" (NOT). Primary standard RI.K.1 addressed by informational comp story. RL.K.3 secondary not explicit — Sofia passed Q8 (RL.K.3), not a primary gap.</td>
-          <td><span class="badge badge-ok">ALIGNED</span></td>
+          <td>Chose "fat" (is in text) not "wet" — misread "NOT" + detail retrieval</td>
+          <td><span class="lesson-name">See, Hear, Smell, Taste, Touch</span> <span style="color:#4b5563;font-size:10.5px">(informational)</span></td>
+          <td style="text-align:right"><span class="badge b-ok">Aligned</span></td>
         </tr>
-        <tr class="row-ok">
+        <tr class="row-prx">
           <td>Q7</td>
           <td>
-            <span class="standard-code mismatch" title="Builder said RL.K.1 — incorrect">RL.K.1</span>
-            <span class="standard-code correct">RI.K.1</span>
-            Key detail (number word "ten")
+            <span class="std std-err" title="Builder said RL.K.1">RL.K.1</span>
+            <span class="std std-ok">RI.K.1</span>
           </td>
-          <td>Chose "one egg" instead of "ten eggs" — short-e CVC decoding gap. Word Family "et" (proximity match) + informational comp story address this cluster.</td>
-          <td><span class="badge badge-prox">ALIGNED (prereq proxy)</span></td>
+          <td>Chose "one egg" not "ten eggs" — short-e decoding ("ten")</td>
+          <td><span class="lesson-name">Word Family "et"</span> <span style="color:#4b5563;font-size:10.5px">+ story above</span></td>
+          <td style="text-align:right"><span class="badge b-prx">Proximity</span></td>
         </tr>
         <tr class="row-ok">
           <td>Q9</td>
-          <td>
-            <span class="standard-code correct">RI.K.1</span>
-            Key detail (what jam is eaten on)
-          </td>
-          <td>Chose "a rug" instead of "a bun" — -un CVC decoding gap. Word Family "un" directly targets the "bun" decoding prerequisite. Standard attribution correct.</td>
-          <td><span class="badge badge-ok">ALIGNED</span></td>
+          <td><span class="std std-ok">RI.K.1</span></td>
+          <td>Chose "a rug" not "a bun" — -un CVC decoding</td>
+          <td><span class="lesson-name">Word Family "un"</span> <span style="color:#4b5563;font-size:10.5px">+ story above</span></td>
+          <td style="text-align:right"><span class="badge b-ok">Aligned</span></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- Builder errors panel -->
-  <div class="error-card">
-    <div class="error-header">Builder Errors Confirmed (Low Impact — Lesson Choices Correct)</div>
-    <div class="error-body">
-      <div class="error-item">
-        <strong>Q4: Standard mislabeled as RF.K.2 (should be L.K.5.A)</strong>
-        RF.K.2 is phonological awareness. The Q4 error (sorting by rhyme instead of meaning) is a semantic word relationship issue — L.K.5.A. The builder confused phonological vs. semantic categorization at the standard level, though Categories K (L.K.5.A) was correctly chosen.
-        <div class="impact-low" style="margin-top:4px">&#10003; IMPACT: LOW — lesson choice correct despite wrong standard.</div>
-      </div>
-      <div class="error-item">
-        <strong>Q6 + Q7: Labeled RL.K.1 (narrative); QTI confirms RI.K.1 (informational)</strong>
-        Builder treated Q6 and Q7 as narrative comprehension questions and assigned an informational story (547) — which should be a genre mismatch for RL.K.1. However, QTI confirms Q7 is RI.K.1 and Q6 is RI.K.1+RL.K.3. The informational story was the correct choice — the builder arrived at the right lesson for the wrong stated reason.
-        <div class="impact-low" style="margin-top:4px">&#10003; IMPACT: LOW — accidentally correct outcome; genre reasoning error in builder logic, not in lesson selection.</div>
-      </div>
-      <div class="error-item">
-        <strong>Categories K "previously resolved gap in Assessment 1" — unverified claim</strong>
-        No prior use of Categories K appears in rpt2_activity_log. Pre-K.4 lesson history shows only: Short u Blending (0 XP), Short e Blending (0 XP), Capitalization-Beginning of Sentence (0 XP), Muffet (15 XP), One Blue Crayon (15 XP). The builder's claimed prior success history for this lesson is not corroborated by the DB.
-        <div class="impact-low" style="margin-top:4px">&#10003; IMPACT: LOW — lesson assignment remains appropriate regardless.</div>
-      </div>
-    </div>
+  <!-- Builder notes + watch items -->
+  <div class="card">
+    <div class="card-header">Notes</div>
+    <ul class="note-list">
+      <li>
+        <span class="note-tag nt-warn">Builder error</span>
+        Q4, Q6, Q7 standards mislabeled (RF.K.2 / RL.K.1 respectively) — lesson choices correct regardless.
+      </li>
+      <li>
+        <span class="note-tag nt-warn">Builder error</span>
+        Builder assigned informational story (547) while believing Q6/Q7 were RL.K.1 — accidentally correct; QTI confirms both are RI.K.1.
+      </li>
+      <li>
+        <span class="note-tag nt-warn">Unverified</span>
+        Builder claimed Categories K resolved this gap in "Assessment 1" — no prior Categories K entry in activity log.
+      </li>
+      <li>
+        <span class="note-tag nt-watch">Watch</span>
+        Q7 + Q9 persisted wrong on K.5 (2026-03-24). Add a second informational story (Harvest Time #548, untried) to K.5 plan.
+      </li>
+      <li>
+        <span class="note-tag nt-watch">Watch</span>
+        Word Family "et" is a -et proxy for a -en gap ("ten"). Ten Men: Short 'e' Decodable (#1840, untried) may be more direct — verify content before K.5 plan.
+      </li>
+      <li>
+        <span class="note-tag nt-info">Context</span>
+        Prior blending lessons (Short u/e Blending, 0 XP each) failed. K.4 plan correctly switched to rime-based approach (Word Family "un" and "et").
+      </li>
+    </ul>
   </div>
 
-  <!-- Story assessment -->
-  <div class="story-card">
-    <div class="story-header">Comprehension Story Assessment — RI.K.1 Cluster (Q6, Q7, Q9)</div>
-    <div class="story-body">
-      <p style="margin-bottom:8px"><strong style="color:#6ee7b7">See, Hear, Smell, Taste, Touch (ID 547) — Informational</strong> &nbsp;·&nbsp; Assigned, completed 2026-03-19 &nbsp;·&nbsp; <strong style="color:#34d399">APPROPRIATE</strong></p>
-      <p style="color:#6b7280; font-size:11px; margin-bottom:10px">Addresses RI.K.1 (key detail retrieval from informational text) — correctly matched to the primary failing standard on Q6, Q7, and Q9 per QTI. Provides structured comprehension practice without decoding barrier. Practice-based only (no direct instruction on "go back and find it" strategy — catalog limitation, not builder error).</p>
-      <p style="color:#4b5563; font-size:11px"><strong style="color:#6b7280">Previously tried narrative stories not re-used (correct):</strong> Muffet (1617, completed 15 XP, 2026-03-17), One Blue Crayon (1628, completed 15 XP, 2026-03-17) — both narrative; not appropriate for RI.K.1 questions. Omission is correct.</p>
-      <p style="color:#4b5563; font-size:11px; margin-top:6px"><strong style="color:#6b7280">Untried informational stories available but not assigned:</strong> Harvest Time (548), The Story of a Seed (549), What is Climate Change? (1648) — these remain available for K.5 hole-filling given Q7 and Q9 persisted on K.5.</p>
-    </div>
-  </div>
-
-  <!-- Prior lesson context -->
-  <div class="prior-card">
-    <div class="prior-header">Prior Lesson History (Pre-K.4 — Same Course)</div>
-    <div class="prior-body">
-      <table class="mini-table">
-        <thead>
-          <tr>
-            <td>Date</td>
-            <td>Lesson</td>
-            <td>XP</td>
-            <td style="text-align:right">Outcome</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="color:#4b5563; font-size:10.5px">2026-03-13</td>
-            <td>Short u Blending</td>
-            <td style="color:#4b5563">0</td>
-            <td style="text-align:right"><span class="badge badge-note" style="font-size:9.5px">INCOMPLETE</span></td>
-          </tr>
-          <tr>
-            <td style="color:#4b5563; font-size:10.5px">2026-03-13</td>
-            <td>Short e Blending</td>
-            <td style="color:#4b5563">0</td>
-            <td style="text-align:right"><span class="badge badge-note" style="font-size:9.5px">INCOMPLETE</span></td>
-          </tr>
-          <tr>
-            <td style="color:#4b5563; font-size:10.5px">2026-03-13</td>
-            <td>Capitalization-Beginning of Sentence</td>
-            <td style="color:#4b5563">0</td>
-            <td style="text-align:right"><span class="badge badge-note" style="font-size:9.5px">INCOMPLETE</span></td>
-          </tr>
-          <tr>
-            <td style="color:#4b5563; font-size:10.5px">2026-03-17</td>
-            <td>Muffet (Narrative, RL.K.1)</td>
-            <td style="color:#34d399">15</td>
-            <td style="text-align:right"><span class="badge badge-ok" style="font-size:9.5px">COMPLETE</span></td>
-          </tr>
-          <tr>
-            <td style="color:#4b5563; font-size:10.5px">2026-03-17</td>
-            <td>One Blue Crayon (Narrative, RL.K.1 + RL.K.3)</td>
-            <td style="color:#34d399">15</td>
-            <td style="text-align:right"><span class="badge badge-ok" style="font-size:9.5px">COMPLETE</span></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="qc-note" style="margin-top:10px">
-        Blending lessons (phoneme-by-phoneme) failed for both short-u and short-e. K.4 plan correctly switched to rime-based approach (Word Family "un" and "et") — appropriate modality change. Narrative comprehension stories completed in K.3 plan were correctly not re-used (failing questions are RI.K.1 informational, not RL.K.1 narrative).
-      </div>
-    </div>
-  </div>
-
-  <!-- Flags -->
-  <div class="plan-card pass">
-    <div class="plan-header">
-      <div class="plan-title">Flags</div>
-    </div>
-    <div class="plan-section">
-      <div class="flags-row">
-        <span class="flag-chip flag-info">PRIOR_GRADE_TEST_NOT_FOUND</span>
-        <span class="flag-chip flag-warn">BUILDER_AGENT_MASTERY_UNVERIFIED</span>
-        <span class="flag-chip flag-warn">BUILDER_ERROR_INCORRECT_STANDARD_Q4_Q6_Q7</span>
-        <span class="flag-chip flag-warn">BUILDER_ERROR_GENRE_REASONING_COMPREHENSION_CLUSTER</span>
-      </div>
-      <div style="margin-top:8px; font-size:11px; color:#4b5563; line-height:1.6">
-        <strong style="color:#6b7280">PRIOR_GRADE_TEST_NOT_FOUND:</strong> Sofia is age-grade 2 working at GK; no below-Kindergarten test exists. Prior grade check not applicable.<br>
-        <strong style="color:#6b7280">BUILDER_AGENT_MASTERY_UNVERIFIED:</strong> Builder claimed Categories K previously resolved the gap "in Assessment 1" — no prior Categories K entry in activity log. Unverified claim.<br>
-        <strong style="color:#6b7280">BUILDER_ERROR_INCORRECT_STANDARD_Q4_Q6_Q7:</strong> Q4 labeled RF.K.2 (QTI: L.K.5.A); Q6 labeled RL.K.1 (QTI: RI.K.1+RL.K.3); Q7 labeled RL.K.1 (QTI: RI.K.1). Lesson choices were correct despite mislabeling.<br>
-        <strong style="color:#6b7280">BUILDER_ERROR_GENRE_REASONING_COMPREHENSION_CLUSTER:</strong> Builder assigned informational story (547) while believing Q6/Q7 were RL.K.1 — which would be a genre mismatch. QTI confirms Q6/Q7 are RI.K.1, making the lesson choice accidentally correct.
-      </div>
-    </div>
-  </div>
-
-  <!-- Open items -->
-  <div class="plan-card pass">
-    <div class="plan-header">
-      <div class="plan-title">Open Items</div>
-    </div>
-    <div class="plan-section">
-      <ul class="open-items-list">
-        <li><strong style="color:#d1d5db">Ten Men: Short e Decodable (ID 1840, untried)</strong> — may be more directly targeted for Q7 (ten/one confusion, -en words) than Word Family "et" (-et family). Content unverifiable without Lalilo access. Verify for K.5 hole-filling consideration.</li>
-        <li><strong style="color:#d1d5db">RL.K.3 secondary on Q6 — monitor.</strong> Q6 has secondary RL.K.3 standard (character description). Sofia passed Q8 (RL.K.3) — not a primary gap. If RL.K.3 questions appear wrong on K.5+, assign On My Way to Kindergarten (ID 550, narrative, untried).</li>
-        <li><strong style="color:#d1d5db">K.5 result: Q7 and Q9 persisted wrong (2026-03-24).</strong> RI.K.1 detail retrieval gap not closed after one comprehension story + phonics prereqs. K.5 hole-filling should prioritize additional informational comp practice (Harvest Time 548, or The Story of a Seed 549 — both untried).</li>
-        <li><strong style="color:#d1d5db">Builder standard attribution errors (Q4, Q6, Q7) are systemic.</strong> Across multiple QC runs, the builder has shown a pattern of swapping RI/RL standards for comprehension questions. Calibration issue to raise with builder team.</li>
-        <li><strong style="color:#d1d5db">Categories K prior success claim unverified.</strong> Escalate to builder team to clarify which course/test this refers to, or acknowledge the claim is unsupported.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Verdict summary -->
-  <div class="qc-note">
-    <strong style="color:#93c5fd">Verdict: PASS</strong> — Coverage 100% (3/3 clusters), Precision 100% (5/5 lessons). All lesson choices were appropriate: rime-based word family prereqs corrected the failed blending approach for short-u/short-e; the informational comprehension story correctly targeted RI.K.1; Capitalization of I and Categories K directly addressed the remaining gaps. The builder made three standard attribution errors and one genre reasoning error in the comprehension cluster, but none impacted lesson selection. This is a correctly designed hole-filling plan with low-impact documentation errors.
-  </div>
-
-  <div class="footer-note">QC Agent · Sofia Cruz-peralta · Alpha 2026 ELA K.4 · Generated 2026-04-05</div>
+  <div class="footer">Sofia Cruz-peralta · ELA K.4 · QC Agent · 2026-04-05</div>
 
 </div>
 </body>
