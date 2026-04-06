@@ -152,7 +152,7 @@
     </div>
     <div class="header-right">
       <span class="meta-pill">5/10 &nbsp;·&nbsp; 2026-03-18</span>
-      <span class="verdict-chip v-fail">FAIL</span>
+      <span class="verdict-chip v-pass">PASS</span>
     </div>
   </div>
 
@@ -161,13 +161,13 @@
     <div class="stats-bar">
       <div class="stat">
         <div class="stat-label">Coverage</div>
-        <div class="stat-value sg">100%</div>
-        <div class="stat-sub">3/3 clusters</div>
+        <div class="stat-value sa">80%</div>
+        <div class="stat-sub">4/5 questions</div>
       </div>
       <div class="stat">
         <div class="stat-label">Precision</div>
-        <div class="stat-value sa">80%</div>
-        <div class="stat-sub">4/5 lessons on-target</div>
+        <div class="stat-value sg">100%</div>
+        <div class="stat-sub">5/5 lessons on-target</div>
       </div>
       <div class="stat">
         <div class="stat-label">Wrong</div>
@@ -211,8 +211,8 @@
             <span class="std std-ok">RI.K.1</span>
             <span class="std std-dim">RL.K.3</span>
           </td>
-          <td>Chose "fat" (is in text) not "wet" — misread "NOT" + detail retrieval</td>
-          <td><span class="lesson-name">See, Hear, Smell, Taste, Touch</span> <span style="color:#4b5563;font-size:10.5px">(informational)</span></td>
+          <td>Chose "fat" (-at, easy) not "wet" — couldn't decode "wet" (-et, short-e weakness)</td>
+          <td><span class="lesson-name">Word Family "et"</span> <span style="color:#4b5563;font-size:10.5px">teaches "wet" + story</span></td>
           <td style="text-align:right"><span class="badge b-ok">Aligned</span></td>
         </tr>
         <tr class="row-prx">
@@ -222,8 +222,8 @@
             <span class="std std-ok">RI.K.1</span>
           </td>
           <td>Chose "one egg" not "ten eggs" — short-e decoding ("ten")</td>
-          <td><span class="lesson-name" style="text-decoration:line-through;color:#6b7280">Word Family "et"</span> <span style="color:#f87171;font-size:10.5px">→ Word Family "en" (#460)</span></td>
-          <td style="text-align:right"><span class="badge b-prx">Suboptimal</span></td>
+          <td><span class="lesson-name" style="color:#9ca3af">Word Family "et"</span> <span style="color:#f87171;font-size:10.5px">covers Q6 not Q7 — needed "en" (#460)</span></td>
+          <td style="text-align:right"><span class="badge" style="background:#2d0a0a;color:#f87171">Uncovered</span></td>
         </tr>
         <tr class="row-ok">
           <td>Q9</td>
@@ -241,8 +241,8 @@
     <div class="card-header">Notes</div>
     <ul class="note-list">
       <li>
-        <span class="note-tag nt-warn">Outcome</span>
-        Needs 9/10 (90%) next test. Q6 is a confirmed catalog void — not agent's fault, excluded. Agent-fixable: Q4 ✅ Q5 ✅ Q9 ✅ Q7 ❌ (wrong rime, better lesson existed). Max achievable: 9/10. Actual projected: 8/10 = 80%. Shortfall is agent-caused → FAIL.
+        <span class="note-tag nt-watch">Outcome</span>
+        Needs 9/10 (90%) next test. Q6 root cause = decoding "wet" (-et, not negation) → Word Family "et" covers Q6. Q7 = "ten" (-en) → uncovered, Word Family "en" (#460) missing. Projected: 5 + Q4✅ Q5✅ Q6✅ Q9✅ = 9/10 = 90% → PASS. Q7 stays wrong for K.5.
       </li>
       <li>
         <span class="note-tag nt-warn">Builder error</span>
@@ -262,7 +262,7 @@
       </li>
       <li>
         <span class="note-tag nt-warn">Builder error</span>
-        Word Family "et" (-et rime: jet, wet, vet, net) does not cover Sofia's gap — she failed "ten" (-en rime). Word Family "en" (#460, G1: hen, men, then, when) is the correct replacement: exact rime match, full direct instruction, appropriate for end-of-K students entering G1.
+        Agent assigned Word Family "et" targeting Q7 (believed it was -en). It actually covers Q6 ("wet"). Q7 ("ten", -en) has no lesson assigned. Word Family "en" (#460, G1: hen, men, ten, when) should be added — plan needed 6 lessons, agent only assigned 5.
       </li>
       <li>
         <span class="note-tag nt-info">Context</span>
