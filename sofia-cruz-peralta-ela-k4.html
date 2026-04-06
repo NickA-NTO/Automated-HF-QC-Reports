@@ -42,6 +42,7 @@
     font-size: 11px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
   }
   .v-pass { background: #052e16; color: #34d399; border: 1px solid #065f46; }
+  .v-fail { background: #2d0a0a; color: #f87171; border: 1px solid #7f1d1d; }
 
   /* Card */
   .card {
@@ -151,7 +152,7 @@
     </div>
     <div class="header-right">
       <span class="meta-pill">5/10 &nbsp;·&nbsp; 2026-03-18</span>
-      <span class="verdict-chip v-pass">PASS</span>
+      <span class="verdict-chip v-fail">FAIL</span>
     </div>
   </div>
 
@@ -239,6 +240,10 @@
   <div class="card">
     <div class="card-header">Notes</div>
     <ul class="note-list">
+      <li>
+        <span class="note-tag nt-warn">Outcome</span>
+        Needs 9/10 (90%) next test. Confident fixes: Q4 ✅ Q5 ✅ Q9 ✅ — Q7 ❌ wrong rime — Q6 ⚠️ catalog void. Projected score: 8/10 = 80%. Plan fails to reach 90% threshold.
+      </li>
       <li>
         <span class="note-tag nt-warn">Builder error</span>
         Q4, Q6, Q7 standards mislabeled (RF.K.2 / RL.K.1 respectively) — lesson choices correct regardless.
