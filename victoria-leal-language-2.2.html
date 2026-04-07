@@ -26,7 +26,7 @@
 
   /* ── Brand strip color vars ─────────────────────────────────────── */
   .pass-strip    { border-left: 4px solid #059669; }
-  .partial-strip { border-left: 4px solid #d97706; }
+  .fail-strip { border-left: 4px solid #d97706; }
   .fail-strip    { border-left: 4px solid #dc2626; }
 
   /* ── Shared card shell ───────────────────────────────────────────── */
@@ -237,7 +237,7 @@
   <div class="page-title">Hole-Filling QC Report - Victoria Leal</div>
 
   <!-- ── Main card ─────────────────────────────────────────────────── -->
-  <div class="card partial-strip">
+  <div class="card fail-strip">
 
     <!-- Header -->
     <div class="header">
@@ -252,7 +252,7 @@
         </div>
       </div>
       <div class="verdict-block">
-        <div class="verdict-word partial">Partial</div>
+        <div class="verdict-word fail">Fail</div>
         <div class="verdict-sub">QC · 2026-04-01</div>
       </div>
     </div>
@@ -277,7 +277,7 @@
       <div class="stat">
         <div class="stat-label">Projected</div>
         <div class="stat-value c-amber">&#8804;85%</div>
-        <div class="stat-sub">max 17/20 · below threshold</div>
+        <div class="stat-sub">90% was achievable · agent errors cost Q1, Q13</div>
       </div>
     </div>
 
@@ -399,7 +399,7 @@
 
 
   <!-- ── Findings card ─────────────────────────────────────────────── -->
-  <div class="card partial-strip">
+  <div class="card fail-strip">
     <div class="section-label">Findings &amp; Actions</div>
 
     <div class="note-row">
