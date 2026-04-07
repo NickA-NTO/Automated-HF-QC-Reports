@@ -18,9 +18,18 @@
 
   .page { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
 
-  /* ── Brand strip color vars ─────────────────────────────────────── */
-  .pass-strip { border-left: 4px solid #059669; }
-  .fail-strip { border-left: 4px solid #dc2626; }
+  /* ── Card accent strips ──────────────────────────────────────────── */
+  .pass-strip    { border-left: 4px solid #059669; }
+  .partial-strip { border-left: 4px solid #d97706; }
+  .fail-strip    { border-left: 4px solid #dc2626; }
+
+  .home-link {
+    font-size: 11.5px; font-weight: 600; color: #64748b;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 6px; background: #fff; border: 1px solid #e2e8f0;
+    margin-bottom: 4px; transition: border-color .15s, color .15s;
+  }
+  .home-link:hover { color: #0f172a; border-color: #cbd5e1; }
 
   /* ── Shared card shell ───────────────────────────────────────────── */
   .card {
@@ -174,6 +183,14 @@
   .lesson-cell .lesson-note { font-size: 11px; color: #94a3b8; display: block; margin-top: 1px; }
   .lesson-cell .lesson-missing { font-size: 11px; color: #dc2626; display: block; margin-top: 1px; font-weight: 500; }
 
+  .row-covered   td.q-col { color: #059669; border-left: 3px solid #059669; }
+  .row-partial   td.q-col { color: #d97706; border-left: 3px solid #d97706; }
+  .row-uncovered td.q-col { color: #dc2626; border-left: 3px solid #dc2626; }
+  .row-missing   td.q-col { color: #dc2626; border-left: 3px solid #dc2626; }
+  .row-void      td.q-col { color: #94a3b8; border-left: 3px solid #e2e8f0; }
+
+  .std-amber   { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+
   /* Status column */
   .status-col { text-align: right; padding-right: 20px; white-space: nowrap; }
   .status-text {
@@ -181,7 +198,12 @@
     text-transform: uppercase; letter-spacing: .5px;
   }
   .st-covered   { color: #059669; }
+  .st-partial   { color: #d97706; }
   .st-uncovered { color: #dc2626; }
+  .st-void      { color: #94a3b8; }
+  .lesson-void  { font-size: 11px; color: #94a3b8; display: block; margin-top: 1px; font-style: italic; }
+  .ns-void      { background: #cbd5e1; }
+  .nl-void      { color: #94a3b8; }
 
   /* ── Findings / Notes ────────────────────────────────────────────── */
   .note-row {
@@ -231,6 +253,7 @@
 <body>
 <div class="page">
 
+  <a href="index.html" class="home-link">&#8592; All Reports</a>
   <div class="page-title">Hole-Filling QC Report - Sofia Cruz-Peralta</div>
 
   <!-- ── Main card ─────────────────────────────────────────────────── -->
@@ -395,9 +418,9 @@
     </div>
 
     <div class="note-row">
-      <div class="note-strip ns-error"></div>
+      <div class="note-strip ns-info"></div>
       <div class="note-inner">
-        <div class="note-label nl-error">Unverified</div>
+        <div class="note-label nl-info">Context</div>
         <div class="note-text">
           Builder claimed Categories K resolved Q4 in "Assessment 1" — no prior Categories K entry
           found in the activity log for this student.

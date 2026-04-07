@@ -7,6 +7,14 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  .home-link {
+    font-size: 11.5px; font-weight: 600; color: #64748b;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; border-radius: 6px; background: #fff; border: 1px solid #e2e8f0;
+    margin-bottom: 4px; transition: border-color .15s, color .15s;
+  }
+  .home-link:hover { color: #0f172a; border-color: #cbd5e1; }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #f1f5f9;
@@ -166,6 +174,7 @@
 <body>
 <div class="page">
 
+  <a href="index.html" class="home-link">&#8592; All Reports</a>
   <div class="page-title">Hole-Filling QC Report - Nate Kelly</div>
 
   <!-- ── Main card ─────────────────────────────────────────────────── -->
