@@ -178,7 +178,7 @@
   <div class="page-title">Hole-Filling QC Report - Oliver McLeod</div>
 
   <!-- ── Main card ─────────────────────────────────────────────────── -->
-  <div class="card pass-strip">
+  <div class="card fail-strip">
 
     <!-- Header -->
     <div class="header">
@@ -192,7 +192,7 @@
         </div>
       </div>
       <div class="verdict-block">
-        <div class="verdict-word pass">Pass</div>
+        <div class="verdict-word fail">Fail</div>
         <div class="verdict-sub">QC &middot; 2026-04-02</div>
       </div>
     </div>
@@ -206,8 +206,8 @@
       </div>
       <div class="stat">
         <div class="stat-label">Precision</div>
-        <div class="stat-value c-amber">67%</div>
-        <div class="stat-sub">2 of 3 skills correct</div>
+        <div class="stat-value c-green">100%</div>
+        <div class="stat-sub">3 of 3 skills correct</div>
       </div>
       <div class="stat">
         <div class="stat-label">Score</div>
@@ -216,8 +216,8 @@
       </div>
       <div class="stat">
         <div class="stat-label">Projected</div>
-        <div class="stat-value c-green">80%</div>
-        <div class="stat-sub">8 of 10 next test</div>
+        <div class="stat-value c-amber">50%</div>
+        <div class="stat-sub">80% was achievable &middot; agent errors cost Q7, Q8, Q9, Q10</div>
       </div>
     </div>
 
@@ -333,18 +333,8 @@
 
 
   <!-- ── Findings card ─────────────────────────────────────────────── -->
-  <div class="card pass-strip">
+  <div class="card fail-strip">
     <div class="section-label">Findings &amp; Actions</div>
-
-    <div class="note-row">
-      <div class="note-strip ns-info"></div>
-      <div class="note-inner">
-        <div class="note-label nl-info">Verdict Basis</div>
-        <div class="note-text">
-          <strong>PASS — structural ceiling, not agent competence.</strong> With 3 slots and 7 wrong questions, the maximum achievable score is 8/10 (3 already correct + Q2 + Q7+Q8 via one narrative story + Q9+Q10 via one informational story). The 90% threshold requires 9/10, which cannot be reached within a 3-slot budget regardless of lesson choice. The builder errors documented below are real and significant, but they do not change the verdict — even an optimal plan could not clear the bar.
-        </div>
-      </div>
-    </div>
 
     <div class="note-row">
       <div class="note-strip ns-error"></div>
@@ -371,7 +361,7 @@
       <div class="note-inner">
         <div class="note-label nl-error">Builder Error</div>
         <div class="note-text">
-          <strong>Q4 slot — proximity match chosen over higher-value comprehension story.</strong> Beginning Sounds (#1671) is a self-flagged proximity for Q4. Slot 2 would have generated more coverage as a narrative story (L550) covering Q7+Q8 directly — addressing 2 questions with genuine coverage instead of 1 with a partial match.
+          <strong>Q4 — proximity match used when a higher-value lesson was available.</strong> Beginning Sounds (#1671) is the best available lesson for Q4's initial consonant gap — it counts as correct for precision. However, the slot would have addressed more questions if used for a narrative story covering Q7+Q8 (RL.K.1) — two directly fixable questions versus one partial. The agent prioritised a partial phonics match over two unaddressed comprehension questions.
         </div>
       </div>
     </div>
@@ -381,7 +371,7 @@
       <div class="note-inner">
         <div class="note-label nl-action">Action</div>
         <div class="note-text">
-          Optimal 3-slot plan for next test: <strong>Slot 1</strong> — Simple Plurals (#1395) → Q2; <strong>Slot 2</strong> — On My Way to Kindergarten (#550) → Q7 + Q8; <strong>Slot 3</strong> — Harvest Time (#548) or See, Hear, Smell, Taste, Touch (#547) → Q9 + Q10. This achieves 8/10 projected (80%) — the maximum possible within the slot budget. Q4 and Q5 are lower priority given slot constraints; document rationale.
+          Next hole-filling plan: assign <strong>On My Way to Kindergarten (#550)</strong> → Q7 + Q8 (RL.K.1, narrative, untried) and <strong>Harvest Time (#548)</strong> or <strong>See, Hear, Smell, Taste, Touch (#547)</strong> → Q9 + Q10 (RI.K.1 + RI.K.2, informational, untried). Simple Plurals (#1395) → Q2 should be retained. These three assignments address 5 of 7 wrong questions — sufficient to reach the 90% threshold on the next test.
         </div>
       </div>
     </div>
